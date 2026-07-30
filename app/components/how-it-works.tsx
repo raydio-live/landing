@@ -46,19 +46,24 @@ export function HowItWorks() {
         description="Four steps from sign-up to live on the channel."
       />
 
-      <div className="dot-border dot-divide-y mt-12">
+      <div className="dot-border mt-12">
         {steps.map((item, i) => (
-          <FadeIn key={item.step} delay={i * 0.08}>
-            <div className="grid gap-6 bg-white p-8 sm:grid-cols-[auto_1fr] sm:items-start sm:gap-10">
-              <div className={`step-badge ${item.badgeClass}`}>{item.step}</div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-gray-500">
-                  {item.description}
-                </p>
+          <div
+            key={item.step}
+            className={i > 0 ? "dot-border-t" : undefined}
+          >
+            <FadeIn delay={i * 0.08}>
+              <div className="grid gap-6 bg-white p-8 sm:grid-cols-[auto_1fr] sm:items-start sm:gap-10">
+                <div className={`step-badge ${item.badgeClass}`}>{item.step}</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         ))}
       </div>
     </div>

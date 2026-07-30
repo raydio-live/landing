@@ -14,36 +14,50 @@ export function Header() {
 
   return (
     <header className="section-divider">
-      <div className="relative flex h-16 items-center justify-between px-6 sm:px-10">
-        <a href="#" className="flex items-center gap-2 z-10">
+      {/* Desktop: full-width segmented bar */}
+      <div className="hidden h-14 md:grid md:grid-cols-[1fr_auto_auto_auto_auto]">
+        <a
+          href="#"
+          className="dot-border-r flex items-center gap-2 px-6 sm:px-10"
+        >
           <RaydioLogo className="h-7 w-7" />
           <span className="text-sm font-semibold tracking-tight text-gray-900">
             Raydio
           </span>
         </a>
 
-        <nav className="dot-border absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center rounded-full bg-white md:flex">
-          {navLinks.map((link, i) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`px-5 py-2.5 text-sm text-gray-500 transition-colors hover:text-gray-900 ${
-                i > 0 ? "dot-border-l" : ""
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
-          <a href="#download" className="dot-border-l flex items-center gap-2 px-4 py-1.5">
-            <span className="btn-primary h-8 rounded-full px-4 text-xs">
-              Get the app
-            </span>
+        {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            className="dot-border-r flex items-center px-5 text-sm text-gray-500 transition-colors hover:text-gray-900"
+          >
+            {link.label}
           </a>
-        </nav>
+        ))}
+
+        <a
+          href="#download"
+          className="flex items-center px-4 sm:px-5"
+        >
+          <span className="btn-primary h-8 rounded-md px-4 text-xs">
+            Get the app
+          </span>
+        </a>
+      </div>
+
+      {/* Mobile */}
+      <div className="flex h-14 items-center justify-between px-6 md:hidden">
+        <a href="#" className="flex items-center gap-2">
+          <RaydioLogo className="h-7 w-7" />
+          <span className="text-sm font-semibold tracking-tight text-gray-900">
+            Raydio
+          </span>
+        </a>
 
         <button
           type="button"
-          className="dot-border flex h-9 w-9 items-center justify-center rounded-lg md:hidden"
+          className="dot-border flex h-9 w-9 items-center justify-center rounded-lg"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
@@ -67,7 +81,11 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-            <a href="#download" className="btn-primary mt-2 h-10" onClick={() => setMenuOpen(false)}>
+            <a
+              href="#download"
+              className="btn-primary mt-2 h-10"
+              onClick={() => setMenuOpen(false)}
+            >
               Get the app
             </a>
           </nav>

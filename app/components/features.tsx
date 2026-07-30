@@ -16,7 +16,7 @@ const features = [
   {
     title: "Channels & members",
     description: "Group radios for your team. Everyone on the same frequency.",
-    featured: false,
+    featured: true,
   },
   {
     title: "Invite links",

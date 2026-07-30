@@ -6,7 +6,7 @@
   --foreground: #111827;
   --surface: #ffffff;
   --surface-muted: #f9fafb;
-  --grid-dot: #d4d4d8;
+  --grid-dot: #a3a3a3;
   --border: #e5e7eb;
   --muted: #6b7280;
   --muted-foreground: #9ca3af;
@@ -14,18 +14,21 @@
   --primary-hover: #1d4ed8;
   --primary-light: #eff6ff;
   --primary-muted: #dbeafe;
-  --dot-size: 0.55px;
-  --dot-gap-x: 5px;
-  --dot-gap-y: 5px;
+
+  /* Dot border tuning — matches Aceternity SVG pattern */
+  --dot-radius: 1px;
+  --dot-h-repeat: 8px 4px;   /* horizontal: pattern width × height */
+  --dot-v-repeat: 4px 8px;   /* vertical: pattern width × height */
+  --dot-stroke: 4px;         /* visible thickness of border lines */
   --dot-line-h: radial-gradient(
-    circle,
-    var(--grid-dot) var(--dot-size),
-    transparent var(--dot-size)
+    circle var(--dot-radius) at 4px 2px,
+    var(--grid-dot) 100%,
+    transparent 100%
   );
   --dot-line-v: radial-gradient(
-    circle,
-    var(--grid-dot) var(--dot-size),
-    transparent var(--dot-size)
+    circle var(--dot-radius) at 2px 4px,
+    var(--grid-dot) 100%,
+    transparent 100%
   );
 }
 
@@ -81,9 +84,10 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 1px;
+  z-index: 2;
+  width: var(--dot-stroke);
   background-image: var(--dot-line-v);
-  background-size: 1px var(--dot-gap-y);
+  background-size: var(--dot-v-repeat);
   background-repeat: repeat-y;
   pointer-events: none;
 }
@@ -106,9 +110,10 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 1px;
+  z-index: 2;
+  height: var(--dot-stroke);
   background-image: var(--dot-line-h);
-  background-size: var(--dot-gap-x) 1px;
+  background-size: var(--dot-h-repeat);
   background-repeat: repeat-x;
   pointer-events: none;
 }
@@ -121,13 +126,14 @@ body {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 2;
   border-radius: inherit;
   pointer-events: none;
   background:
-    var(--dot-line-h) top / var(--dot-gap-x) 1px repeat-x,
-    var(--dot-line-h) bottom / var(--dot-gap-x) 1px repeat-x,
-    var(--dot-line-v) left / 1px var(--dot-gap-y) repeat-y,
-    var(--dot-line-v) right / 1px var(--dot-gap-y) repeat-y;
+    var(--dot-line-h) top / var(--dot-h-repeat) repeat-x,
+    var(--dot-line-h) bottom / var(--dot-h-repeat) repeat-x,
+    var(--dot-line-v) left / var(--dot-v-repeat) repeat-y,
+    var(--dot-line-v) right / var(--dot-v-repeat) repeat-y;
 }
 
 .dot-border-t {
@@ -140,9 +146,10 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
+  z-index: 2;
+  height: var(--dot-stroke);
   background-image: var(--dot-line-h);
-  background-size: var(--dot-gap-x) 1px;
+  background-size: var(--dot-h-repeat);
   background-repeat: repeat-x;
   pointer-events: none;
 }
@@ -157,9 +164,10 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 1px;
+  z-index: 2;
+  height: var(--dot-stroke);
   background-image: var(--dot-line-h);
-  background-size: var(--dot-gap-x) 1px;
+  background-size: var(--dot-h-repeat);
   background-repeat: repeat-x;
   pointer-events: none;
 }
@@ -174,9 +182,10 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 1px;
+  z-index: 2;
+  width: var(--dot-stroke);
   background-image: var(--dot-line-v);
-  background-size: 1px var(--dot-gap-y);
+  background-size: var(--dot-v-repeat);
   background-repeat: repeat-y;
   pointer-events: none;
 }
@@ -191,9 +200,10 @@ body {
   top: 0;
   bottom: 0;
   right: 0;
-  width: 1px;
+  z-index: 2;
+  width: var(--dot-stroke);
   background-image: var(--dot-line-v);
-  background-size: 1px var(--dot-gap-y);
+  background-size: var(--dot-v-repeat);
   background-repeat: repeat-y;
   pointer-events: none;
 }
@@ -208,9 +218,10 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 1px;
+  z-index: 2;
+  width: var(--dot-stroke);
   background-image: var(--dot-line-v);
-  background-size: 1px var(--dot-gap-y);
+  background-size: var(--dot-v-repeat);
   background-repeat: repeat-y;
   pointer-events: none;
 }
@@ -221,9 +232,10 @@ body {
   top: 0;
   bottom: 0;
   right: 0;
-  width: 1px;
+  z-index: 2;
+  width: var(--dot-stroke);
   background-image: var(--dot-line-v);
-  background-size: 1px var(--dot-gap-y);
+  background-size: var(--dot-v-repeat);
   background-repeat: repeat-y;
   pointer-events: none;
 }
@@ -238,23 +250,20 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
+  z-index: 2;
+  height: var(--dot-stroke);
   background-image: var(--dot-line-h);
-  background-size: var(--dot-gap-x) 1px;
+  background-size: var(--dot-h-repeat);
   background-repeat: repeat-x;
   pointer-events: none;
 }
 
 .dot-grid {
   display: grid;
-  gap: 1px;
+  gap: var(--dot-stroke);
   background-color: #ffffff;
-  background-image: radial-gradient(
-    circle,
-    var(--grid-dot) var(--dot-size),
-    transparent var(--dot-size)
-  );
-  background-size: var(--dot-gap-x) var(--dot-gap-y);
+  background-image: var(--dot-line-h);
+  background-size: var(--dot-h-repeat);
 }
 
 .dot-grid > * {
@@ -313,10 +322,10 @@ body {
   border-radius: inherit;
   pointer-events: none;
   background:
-    var(--dot-line-h) top / var(--dot-gap-x) 1px repeat-x,
-    var(--dot-line-h) bottom / var(--dot-gap-x) 1px repeat-x,
-    var(--dot-line-v) left / 1px var(--dot-gap-y) repeat-y,
-    var(--dot-line-v) right / 1px var(--dot-gap-y) repeat-y;
+    var(--dot-line-h) top / var(--dot-h-repeat) repeat-x,
+    var(--dot-line-h) bottom / var(--dot-h-repeat) repeat-x,
+    var(--dot-line-v) left / var(--dot-v-repeat) repeat-y,
+    var(--dot-line-v) right / var(--dot-v-repeat) repeat-y;
 }
 
 .btn-secondary:hover {
