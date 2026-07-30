@@ -1,8 +1,8 @@
 const footerLinks = {
   Product: [
-    { label: "Features", href: "#features" },
-    { label: "How it works", href: "#how-it-works" },
-    { label: "Join channel", href: "#join" },
+    { label: "Features", href: "/#features" },
+    { label: "How it works", href: "/#how-it-works" },
+    { label: "Join channel", href: "/#join" },
   ],
   Legal: [
     { label: "Privacy", href: "/privacy" },
