@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "live.raydio.app",
+      "sha256_cert_fingerprints": [
+        "44:8E:32:92:00:43:C4:FB:BD:10:1D:6A:68:50:FE:2A:07:9D:66:CB:68:59:6B:18:C7:33:1B:8F:9A:9C:23:22",
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"
+      ]
+    }
+  }
+]
