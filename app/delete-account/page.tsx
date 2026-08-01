@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://raydio.live/delete-account" },
 };
 
-const LAST_UPDATED = "July 30, 2026";
+const LAST_UPDATED = "August 2, 2026";
 
 export default function DeleteAccountPage() {
   return (
@@ -19,14 +19,20 @@ export default function DeleteAccountPage() {
           app:
         </p>
         <ol className="list-decimal space-y-2 pl-5">
-          <li>Open the Raydio app and go to your profile.</li>
+          <li>Open the Raydio app and sign in.</li>
+          <li>Go to Profile.</li>
           <li>
-            Tap <strong>Delete account</strong>.
+            Tap <strong>Delete account</strong> and confirm when prompted.
           </li>
         </ol>
         <p>
-          If you own channels, you may need to delete or transfer them before
-          account deletion is allowed.
+          If you own any channels, delete them first. The app may block account
+          deletion until owned channels are removed.
+        </p>
+        <p>
+          If you no longer have the app installed, email{" "}
+          <a href="mailto:hello@raydio.live">hello@raydio.live</a> from the
+          email address on your account and request deletion.
         </p>
       </LegalSection>
 
@@ -36,6 +42,10 @@ export default function DeleteAccountPage() {
           <li>Your account profile (name, email, and related profile data)</li>
           <li>Active sessions and sign-in access</li>
           <li>Push notification tokens associated with your devices</li>
+          <li>
+            Channel memberships, invites, and other account-linked data in the
+            Service
+          </li>
         </ul>
         <p>
           Deletion applies to active systems as described in our{" "}
