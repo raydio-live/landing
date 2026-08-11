@@ -4,6 +4,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 const PACKAGE_NAME = "live.raydio.app";
 const APP_SCHEME = "raydio";
+/** Official Play listing for the store package (matches API / app defaults). */
+const PLAY_STORE_URL = `https://play.google.com/store/apps/details?id=${PACKAGE_NAME}`;
+const PLAY_STORE_MARKET_URL = `market://details?id=${PACKAGE_NAME}`;
 /** Matches Android join token rules: URL-safe, 8–64 chars. */
 const TOKEN_RE = /^[A-Za-z0-9_-]{8,64}$/;
 
@@ -16,12 +19,12 @@ function isValidToken(token: string): boolean {
 }
 
 /**
- * Build an Android intent URL that opens the verified App Link in the store
- * package. Falls back to the same page if the app is missing.
+ * Android intent: open verified App Link in the store package.
+ * If the app is not installed, fall through to the Play Store listing.
  */
-function androidIntentUrl(token: string, webFallback: string): string {
+function androidIntentUrl(token: string): string {
   const path = `www.raydio.live/j/${encodeURIComponent(token)}`;
-  const fallback = encodeURIComponent(webFallback);
+  const fallback = encodeURIComponent(PLAY_STORE_URL);
   return `intent://${path}#Intent;scheme=https;package=${PACKAGE_NAME};S.browser_fallback_url=${fallback};end`;
 }
 
@@ -33,14 +36,43 @@ function httpsAppLink(token: string): string {
   return `https://www.raydio.live/j/${encodeURIComponent(token)}`;
 }
 
+function isAndroidUa(): boolean {
+  if (typeof navigator === "undefined") return false;
+  return /Android/i.test(navigator.userAgent || "");
+}
+
+function isMobileUa(): boolean {
+  if (typeof navigator === "undefined") return false;
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
+}
+
 export function JoinInvite({ token }: JoinInviteProps) {
   const valid = isValidToken(token);
   const [status, setStatus] = useState<"idle" | "opening" | "waiting">(
     "idle",
   );
+  const [android, setAndroid] = useState(false);
 
   const webUrl = useMemo(() => httpsAppLink(token), [token]);
   const schemeUrl = useMemo(() => customSchemeUrl(token), [token]);
+
+  useEffect(() => {
+    setAndroid(isAndroidUa());
+  }, []);
+
+  const openPlayStore = useCallback(() => {
+    if (typeof window === "undefined") return;
+    // Prefer market:// on Android so the Play Store app opens when present.
+    if (isAndroidUa()) {
+      window.location.href = PLAY_STORE_MARKET_URL;
+      // Safety: if market:// is ignored, land on the HTTPS listing.
+      window.setTimeout(() => {
+        window.location.href = PLAY_STORE_URL;
+      }, 800);
+      return;
+    }
+    window.open(PLAY_STORE_URL, "_blank", "noopener,noreferrer");
+  }, []);
 
   const tryOpenApp = useCallback(() => {
     if (!valid || typeof window === "undefined") return;
@@ -54,7 +86,8 @@ export function JoinInvite({ token }: JoinInviteProps) {
     // Prefer platform-native handoff. Verified App Links usually intercept
     // before this page loads on Android; this covers browser / open-in-tab cases.
     if (isAndroid) {
-      window.location.href = androidIntentUrl(token, webUrl);
+      // browser_fallback_url → Play Store when app is not installed.
+      window.location.href = androidIntentUrl(token);
     } else if (isIOS) {
       window.location.href = schemeUrl;
     } else {
@@ -64,14 +97,12 @@ export function JoinInvite({ token }: JoinInviteProps) {
 
     // If the app does not take focus, user stays on this page.
     window.setTimeout(() => setStatus("waiting"), 1500);
-  }, [schemeUrl, token, valid, webUrl]);
+  }, [schemeUrl, token, valid]);
 
   // Auto-attempt once on mobile so invite links feel instant.
   useEffect(() => {
     if (!valid) return;
-    const ua = navigator.userAgent || "";
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
-    if (!isMobile) return;
+    if (!isMobileUa()) return;
 
     // Small delay so the page paints first (better UX if app is missing).
     const id = window.setTimeout(() => tryOpenApp(), 350);
@@ -97,8 +128,13 @@ export function JoinInvite({ token }: JoinInviteProps) {
           <a href="/" className="btn-primary h-11 px-6 text-sm">
             Go to raydio.live
           </a>
-          <a href="/#download" className="btn-secondary h-11 px-6 text-sm">
-            Get the app
+          <a
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary h-11 px-6 text-sm"
+          >
+            Get it on Google Play
           </a>
         </div>
       </div>
@@ -114,8 +150,8 @@ export function JoinInvite({ token }: JoinInviteProps) {
         You&apos;re invited to a Raydio channel
       </h1>
       <p className="mt-4 leading-relaxed text-gray-500">
-        Open the app to join instantly. If Raydio isn&apos;t installed yet, get
-        it first — then tap this link again.
+        Open the app to join instantly. Don&apos;t have Raydio yet? Install it
+        from Google Play, then come back to this link.
       </p>
 
       <div className="dot-border mt-6 flex items-center gap-3 bg-gray-50/50 px-4 py-3">
@@ -147,21 +183,30 @@ export function JoinInvite({ token }: JoinInviteProps) {
         >
           {status === "opening" ? "Opening Raydio…" : "Open in Raydio"}
         </button>
-        <a
-          href="/#download"
+        <button
+          type="button"
+          onClick={openPlayStore}
           className="btn-secondary h-11 w-full px-6 text-sm sm:w-auto"
         >
-          Get the app
-        </a>
+          {android ? "Download on Google Play" : "Get it on Google Play"}
+        </button>
       </div>
 
       {status === "waiting" && (
-        <p className="mt-6 text-sm leading-relaxed text-gray-500">
-          Nothing opened? Install Raydio, then tap{" "}
-          <strong className="font-medium text-gray-700">Open in Raydio</strong>{" "}
-          again. On Android, verified App Links open the app automatically when
-          it&apos;s installed.
-        </p>
+        <div className="mt-6 space-y-3">
+          <p className="text-sm leading-relaxed text-gray-500">
+            Nothing opened? You probably need the app first. Install Raydio from
+            Google Play, then open this invite again to join the channel.
+          </p>
+          <a
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex text-sm font-medium text-primary hover:text-primary-hover"
+          >
+            Open Play Store listing →
+          </a>
+        </div>
       )}
 
       <p className="mt-8 font-mono text-xs text-gray-400 break-all">
