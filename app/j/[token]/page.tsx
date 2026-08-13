@@ -24,9 +24,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://www.raydio.live${path}`,
       siteName: "Raydio",
       type: "website",
+      images: [
+        {
+          url: "/opengraph-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Raydio — Your team's radio. In your pocket.",
+        },
+      ],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: "Join channel — Raydio",
       description:
         "You’ve been invited to a Raydio channel. Open the app to join and start talking instantly.",
