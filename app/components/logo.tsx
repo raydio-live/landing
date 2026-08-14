@@ -1,28 +1,30 @@
-export function RaydioLogo({ className = "" }: { className?: string }) {
+type LogoProps = {
+  className?: string;
+};
+
+export function RaydioLogo({ className = "h-8 w-auto" }: LogoProps) {
   return (
-    <svg
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    // Brand mark is a static SVG; next/image adds nothing here.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/raydio-icon.svg"
+      alt=""
+      width={1711}
+      height={2640}
       className={className}
       aria-hidden="true"
-    >
-      <rect width="32" height="32" rx="8" fill="url(#logo-gradient)" />
-      <circle cx="16" cy="16" r="7" stroke="white" strokeWidth="2" fill="none" />
-      <circle cx="16" cy="16" r="3" fill="white" />
-      <defs>
-        <linearGradient
-          id="logo-gradient"
-          x1="0"
-          y1="0"
-          x2="32"
-          y2="32"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#3B82F6" />
-          <stop offset="1" stopColor="#2563EB" />
-        </linearGradient>
-      </defs>
-    </svg>
+      draggable={false}
+    />
+  );
+}
+
+export function RaydioWordmark({ className = "" }: LogoProps) {
+  return (
+    <span className={`flex items-center gap-2 ${className}`.trim()}>
+      <RaydioLogo />
+      <span className="text-sm font-semibold tracking-tight text-gray-900">
+        Raydio
+      </span>
+    </span>
   );
 }

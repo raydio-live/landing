@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { RaydioLogo } from "../../components/logo";
+import { RaydioWordmark } from "../../components/logo";
 import { Footer } from "../../components/footer";
 import { PageFrame } from "../../components/ui/page-frame";
 import { JoinInvite } from "../../components/join-invite";
@@ -52,10 +52,7 @@ export default async function JoinTokenPage({ params }: Props) {
       <header className="section-divider">
         <div className="flex h-14 items-center justify-between px-6 sm:px-10">
           <a href="/" className="flex items-center gap-2">
-            <RaydioLogo className="h-7 w-7" />
-            <span className="text-sm font-semibold tracking-tight text-gray-900">
-              Raydio
-            </span>
+            <RaydioWordmark />
           </a>
           <a
             href="/#download"

@@ -1,3 +1,5 @@
+import { RaydioLogo } from "./logo";
+
 const footerLinks = {
   Product: [
     { label: "Features", href: "/#features" },
@@ -19,7 +21,12 @@ export function Footer() {
     <footer>
       <div className="dot-grid dot-border-t grid lg:grid-cols-4">
         <div className="p-8 sm:p-10">
-          <p className="text-2xl font-semibold tracking-tight text-gray-900">Raydio</p>
+          <a href="/" className="inline-flex items-center gap-2.5">
+            <RaydioLogo className="h-10 w-auto" />
+            <span className="text-2xl font-semibold tracking-tight text-gray-900">
+              Raydio
+            </span>
+          </a>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-500">
             Instant push-to-talk for teams. Your crew&apos;s radio, in your pocket.
           </p>

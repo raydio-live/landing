@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Footer } from "./footer";
-import { RaydioLogo } from "./logo";
+import { RaydioWordmark } from "./logo";
 import { PageFrame } from "./ui/page-frame";
 
 type LegalDocProps = {
@@ -15,10 +15,7 @@ export function LegalDoc({ title, lastUpdated, children }: LegalDocProps) {
       <header className="section-divider">
         <div className="flex h-14 items-center justify-between px-6 sm:px-10">
           <a href="/" className="flex items-center gap-2">
-            <RaydioLogo className="h-7 w-7" />
-            <span className="text-sm font-semibold tracking-tight text-gray-900">
-              Raydio
-            </span>
+            <RaydioWordmark />
           </a>
           <a
             href="/"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { RaydioLogo } from "./logo";
+import { RaydioWordmark } from "./logo";
 
 const navLinks = [
   { href: "#how-it-works", label: "How it works" },
@@ -20,10 +20,7 @@ export function Header() {
           href="#"
           className="dot-border-r flex items-center gap-2 px-6 sm:px-10"
         >
-          <RaydioLogo className="h-7 w-7" />
-          <span className="text-sm font-semibold tracking-tight text-gray-900">
-            Raydio
-          </span>
+          <RaydioWordmark />
         </a>
 
         {navLinks.map((link) => (
@@ -49,10 +46,7 @@ export function Header() {
       {/* Mobile */}
       <div className="flex h-14 items-center justify-between px-6 md:hidden">
         <a href="#" className="flex items-center gap-2">
-          <RaydioLogo className="h-7 w-7" />
-          <span className="text-sm font-semibold tracking-tight text-gray-900">
-            Raydio
-          </span>
+          <RaydioWordmark />
         </a>
 
         <button
