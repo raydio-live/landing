@@ -3,6 +3,7 @@ import { RaydioWordmark } from "../../components/logo";
 import { Footer } from "../../components/footer";
 import { PageFrame } from "../../components/ui/page-frame";
 import { JoinInvite } from "../../components/join-invite";
+import { PLAY_STORE_URL } from "../../lib/store";
 
 type Props = {
   params: Promise<{ token: string }>;
@@ -55,7 +56,9 @@ export default async function JoinTokenPage({ params }: Props) {
             <RaydioWordmark />
           </a>
           <a
-            href="/#download"
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm text-gray-500 transition-colors hover:text-gray-900"
           >
             Get the app

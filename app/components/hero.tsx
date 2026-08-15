@@ -1,3 +1,4 @@
+import { PLAY_STORE_URL } from "../lib/store";
 import { FadeIn } from "./ui/fade-in";
 import { Highlight } from "./ui/highlight";
 import { PhoneMockup } from "./phone-mockup";
@@ -29,7 +30,12 @@ export function Hero() {
 
         <FadeIn delay={0.12}>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="#download" className="btn-primary h-11 px-6 text-sm">
+            <a
+              href={PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary h-11 px-6 text-sm"
+            >
               Start free
             </a>
             <a href="#how-it-works" className="btn-secondary h-11 px-6 text-sm">

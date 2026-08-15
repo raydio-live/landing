@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PLAY_STORE_URL } from "../lib/store";
 import { RaydioWordmark } from "./logo";
 
 const navLinks = [
@@ -34,7 +35,9 @@ export function Header() {
         ))}
 
         <a
-          href="#download"
+          href={PLAY_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center px-4 sm:px-5"
         >
           <span className="btn-primary h-8 rounded-md px-4 text-xs">
@@ -76,7 +79,9 @@ export function Header() {
               </a>
             ))}
             <a
-              href="#download"
+              href={PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary mt-2 h-10"
               onClick={() => setMenuOpen(false)}
             >

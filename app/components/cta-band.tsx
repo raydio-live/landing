@@ -1,3 +1,4 @@
+import { PLAY_STORE_URL } from "../lib/store";
 import { FadeIn } from "./ui/fade-in";
 import { Highlight } from "./ui/highlight";
 
@@ -14,7 +15,12 @@ export function CtaBand() {
         </p>
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a href="#download" className="btn-primary h-11 px-6 text-sm">
+          <a
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary h-11 px-6 text-sm"
+          >
             Get the app
           </a>
           <a href="mailto:hello@raydio.live" className="btn-secondary h-11 px-6 text-sm">
@@ -23,6 +29,21 @@ export function CtaBand() {
         </div>
 
         <div className="dot-grid dot-border mx-auto mt-12 grid max-w-lg sm:grid-cols-2">
+          <a
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-3 px-6 py-5 transition-colors hover:bg-gray-50"
+            aria-label="Get it on Google Play"
+          >
+            <svg width="18" height="20" viewBox="0 0 20 22" fill="currentColor" className="text-gray-900" aria-hidden="true">
+              <path d="M1 1.5v19l11-9.5L1 1.5zm12.5 8.25L3.5 20.5l9.5-5.5 10.5 6.1V1.4L16 9.75zM3.5 1.5l10 8.25L19.5 3.9 3.5 1.5z" />
+            </svg>
+            <div className="text-left">
+              <p className="text-[10px] text-gray-400">Get it on</p>
+              <p className="text-sm font-medium text-gray-900">Google Play</p>
+            </div>
+          </a>
           <a
             href="#"
             className="flex items-center justify-center gap-3 px-6 py-5 transition-colors hover:bg-gray-50"
@@ -34,19 +55,6 @@ export function CtaBand() {
             <div className="text-left">
               <p className="text-[10px] text-gray-400">Coming soon</p>
               <p className="text-sm font-medium text-gray-900">App Store</p>
-            </div>
-          </a>
-          <a
-            href="#"
-            className="flex items-center justify-center gap-3 px-6 py-5 transition-colors hover:bg-gray-50"
-            aria-label="Get it on Google Play — Coming soon"
-          >
-            <svg width="18" height="20" viewBox="0 0 20 22" fill="currentColor" className="text-gray-900" aria-hidden="true">
-              <path d="M1 1.5v19l11-9.5L1 1.5zm12.5 8.25L3.5 20.5l9.5-5.5 10.5 6.1V1.4L16 9.75zM3.5 1.5l10 8.25L19.5 3.9 3.5 1.5z" />
-            </svg>
-            <div className="text-left">
-              <p className="text-[10px] text-gray-400">Coming soon</p>
-              <p className="text-sm font-medium text-gray-900">Google Play</p>
             </div>
           </a>
         </div>

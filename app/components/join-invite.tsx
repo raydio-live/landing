@@ -1,12 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  PLAY_STORE_MARKET_URL,
+  PLAY_STORE_PACKAGE,
+  PLAY_STORE_URL,
+} from "../lib/store";
 
-const PACKAGE_NAME = "live.raydio.app";
+const PACKAGE_NAME = PLAY_STORE_PACKAGE;
 const APP_SCHEME = "raydio";
-/** Official Play listing for the store package (matches API / app defaults). */
-const PLAY_STORE_URL = `https://play.google.com/store/apps/details?id=${PACKAGE_NAME}`;
-const PLAY_STORE_MARKET_URL = `market://details?id=${PACKAGE_NAME}`;
 /** Matches Android join token rules: URL-safe, 8–64 chars. */
 const TOKEN_RE = /^[A-Za-z0-9_-]{8,64}$/;
 
