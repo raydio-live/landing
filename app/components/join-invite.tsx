@@ -114,7 +114,7 @@ export function JoinInvite({ token }: JoinInviteProps) {
         <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-faint">
           Invalid invite
         </p>
-        <h1 className="mt-4 font-display text-3xl font-medium tracking-[-0.01em] text-balance sm:text-4xl">
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
           This join link doesn&rsquo;t look right
         </h1>
         <p className="mt-4 leading-relaxed text-muted">
@@ -145,8 +145,8 @@ export function JoinInvite({ token }: JoinInviteProps) {
       <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-faint">
         Join a channel
       </p>
-      <h1 className="mt-4 font-display text-3xl font-medium tracking-[-0.01em] text-balance sm:text-4xl">
-        You&rsquo;re invited to a <em className="accent">Raydio</em> channel
+      <h1 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+        You&rsquo;re invited to a Raydio channel
       </h1>
       <p className="mt-4 leading-relaxed text-muted">
         Open the app to join instantly. Don&rsquo;t have Raydio yet? Install it

@@ -30,7 +30,7 @@ export function SectionHeading({
           {label && <span>{label}</span>}
         </p>
       )}
-      <h2 className={`mt-4 font-display text-4xl font-medium leading-[1.05] tracking-[-0.01em] text-balance sm:text-[2.75rem] ${titleColor}`}>
+      <h2 className={`mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.02em] text-balance sm:text-[2.75rem] ${titleColor}`}>
         {title}
       </h2>
       {description && (

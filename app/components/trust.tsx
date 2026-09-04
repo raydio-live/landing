@@ -1,5 +1,4 @@
 import { SectionHeading } from "./ui/section-heading";
-import { Highlight } from "./ui/highlight";
 import { FadeIn } from "./ui/fade-in";
 
 const trustPoints = [
@@ -39,24 +38,18 @@ const trustPoints = [
 
 export function Trust() {
   return (
-    <div className="px-6 py-16 sm:px-10 sm:py-24 lg:px-12">
+    <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
       <SectionHeading
-        index="05"
-        label="Private by design"
-        title={
-          <>
-            Your channel. <Highlight>Your people.</Highlight>
-          </>
-        }
+        title="Your channel. Your people."
         description="No spammy social features. No public broadcasts. Just your team's radio."
       />
 
-      <div className="mx-auto mt-12 grid max-w-4xl gap-10 sm:grid-cols-3 sm:gap-8">
+      <div className="mt-12 grid gap-10 sm:grid-cols-3 sm:gap-8">
         {trustPoints.map((point, i) => (
           <FadeIn key={point.title} delay={i * 0.07}>
-            <div className="border-t-2 border-ink pt-6">
+            <div>
               <div className="text-brand">{point.icon}</div>
-              <h3 className="mt-4 text-[1.05rem] font-semibold tracking-[-0.005em] text-foreground">
+              <h3 className="mt-4 text-[1.05rem] font-semibold tracking-tight text-foreground">
                 {point.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">

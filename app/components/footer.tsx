@@ -14,6 +14,7 @@ const footerLinks = {
   Connect: [
     { label: "Contact", href: "mailto:hello@raydio.live" },
     { label: "API", href: "https://api.raydio.live" },
+    { label: "LLMs", href: "/llms.txt" },
   ],
 };
 
@@ -24,7 +25,7 @@ export function Footer() {
         <div>
           <Link href="/" className="inline-flex items-center gap-2.5" aria-label="Raydio home">
             <RaydioLogo className="h-9 w-auto" />
-            <span className="font-display text-[1.4rem] font-medium tracking-[-0.01em] text-foreground">
+            <span className="text-[1.4rem] font-semibold tracking-tight text-foreground">
               Raydio
             </span>
           </Link>
@@ -61,12 +62,6 @@ export function Footer() {
         </p>
         <p className="font-mono text-xs text-faint">
           Live voice first. Recording &amp; history coming later.
-        </p>
-      </div>
-
-      <div className="px-2 pt-8" aria-hidden="true">
-        <p className="select-none text-center font-display text-[22vw] font-semibold leading-[0.95] tracking-[-0.03em] text-ink/10 lg:text-[16rem]">
-          Raydio
         </p>
       </div>
     </footer>

@@ -34,7 +34,7 @@ export function LegalDoc({ title, lastUpdated, children }: LegalDocProps) {
             <span aria-hidden="true"> / </span>
             Legal
           </p>
-          <h1 className="mt-4 font-display text-4xl font-medium leading-[1.05] tracking-[-0.01em] text-balance sm:text-5xl">
+          <h1 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.02em] text-balance sm:text-5xl">
             {title}
           </h1>
           <p className="mt-4 font-mono text-xs uppercase tracking-[0.16em] text-faint">
@@ -61,7 +61,7 @@ export function LegalSection({
 }) {
   return (
     <section id={id} className="mt-10 border-t border-line pt-8 first:mt-0 first:border-t-0 first:pt-0">
-      <h2 className="font-display text-[1.45rem] font-medium tracking-[-0.01em] text-foreground">
+      <h2 className="text-[1.45rem] font-semibold tracking-tight text-foreground">
         {title}
       </h2>
       <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-muted">

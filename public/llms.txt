@@ -1,0 +1,51 @@
+# Raydio
+
+> Raydio is a realtime push-to-talk (walkie-talkie) app for teams. Create a
+> channel, invite your crew, hold to talk, and be heard instantly. Free to
+> start; first channel live in under a minute.
+
+## Core
+
+- [Home](https://raydio.live): Instant walkie-talkie for teams. Your team's radio, in your pocket.
+- [How it works](https://raydio.live/#how-it-works): Live in three moves — create or join a channel, hold to talk, everyone hears you live.
+- [Features](https://raydio.live/#features): Everything you need, nothing you don't.
+- [Use cases](https://raydio.live/#use-cases): One channel, every crew.
+- [Join a channel](https://raydio.live/#join): Got a link? You're in. Channel links like `raydio.live/j/…` open the app and drop you straight into the channel.
+- [Get the app](https://play.google.com/store/apps/details?id=live.raydio.app): Android app on Google Play. iOS coming soon.
+
+## Features
+
+- Push-to-talk: hold the button, speak, release. Instant voice — no dialing, no ringing.
+- Live listen mode: stay connected to the room while you work.
+- Channels and members: group radios for your team on the same frequency.
+- Invite links: share a link and teammates join with no complicated onboarding.
+- One speaker at a time: turn-taking keeps the channel clear.
+- Profile identity: simple names so teammates always know who is talking.
+
+## How it works
+
+1. Create or join a channel. Sign in with email (one-time code, no password).
+2. Hold to talk. Press and hold the button, speak, release when done.
+3. Everyone hears you live. Low-latency voice, one speaker at a time.
+
+## Use cases
+
+- Field teams and ops: warehouses, delivery crews, on-site contractors.
+- Events and venues: stage managers, security, production.
+- Sports coaching: sidelines, dugouts, practice fields.
+- Friends and road trips: split up, stay connected.
+- Family coordination: theme parks, airports, busy weekends.
+
+## Trust and privacy
+
+- Member-only channels: private to your group, no public feed.
+- Email OTP login: no passwords to leak, no social graph required.
+- [Privacy](https://raydio.live/privacy)
+- [Privacy Policy](https://raydio.live/privacy-policy)
+- [Terms](https://raydio.live/terms)
+- [Delete account](https://raydio.live/delete-account)
+
+## Contact
+
+- Email: <hello@raydio.live>
+- API: <https://api.raydio.live>

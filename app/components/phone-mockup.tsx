@@ -68,7 +68,7 @@ export function PhoneMockup() {
           <div className="border-y border-line bg-white px-5 py-3.5">
             <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-faint">Channel</p>
             <div className="mt-0.5 flex items-baseline justify-between">
-              <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-foreground">Ops Crew</h3>
+              <h3 className="text-xl font-semibold tracking-tight text-foreground">Ops Crew</h3>
               <p className="text-[11px] text-faint">4 listening</p>
             </div>
           </div>

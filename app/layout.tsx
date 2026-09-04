@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono, Fraunces } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -49,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
       style={{ colorScheme: "light" }}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden bg-mist text-foreground">
