@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { Footer } from "./footer";
 import { RaydioWordmark } from "./logo";
 import { PageFrame } from "./ui/page-frame";
@@ -12,33 +13,35 @@ type LegalDocProps = {
 export function LegalDoc({ title, lastUpdated, children }: LegalDocProps) {
   return (
     <PageFrame>
-      <header className="section-divider">
-        <div className="flex h-14 items-center justify-between px-6 sm:px-10">
-          <a href="/" className="flex items-center gap-2">
+      <header className="sticky top-0 z-50 border-b border-line bg-background/85 backdrop-blur-xl">
+        <div className="flex h-16 items-center justify-between px-6 sm:px-10">
+          <Link href="/" className="flex items-center" aria-label="Raydio home">
             <RaydioWordmark />
-          </a>
-          <a
+          </Link>
+          <Link
             href="/"
-            className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+            className="rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-mist hover:text-foreground"
           >
             Back to home
-          </a>
+          </Link>
         </div>
       </header>
 
-      <main className="section-divider">
-        <div className="mx-auto max-w-3xl px-6 py-12 sm:px-10 sm:py-16">
-          <p className="font-mono text-xs uppercase tracking-[0.15em] text-gray-400">
+      <main className="border-b border-line bg-white">
+        <div className="mx-auto max-w-3xl px-6 py-14 sm:px-10 sm:py-20">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-faint">
+            <span className="text-brand">Docs</span>
+            <span aria-hidden="true"> / </span>
             Legal
           </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+          <h1 className="mt-4 font-display text-4xl font-medium leading-[1.05] tracking-[-0.01em] text-balance sm:text-5xl">
             {title}
           </h1>
-          <p className="mt-3 text-sm text-gray-500">
-            Last updated: {lastUpdated}
+          <p className="mt-4 font-mono text-xs uppercase tracking-[0.16em] text-faint">
+            Last updated · {lastUpdated}
           </p>
 
-          <div className="legal-prose mt-10">{children}</div>
+          <div className="legal-prose mt-12 border-t border-line pt-10">{children}</div>
         </div>
       </main>
 
@@ -57,11 +60,11 @@ export function LegalSection({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="mt-10 first:mt-0">
-      <h2 className="text-lg font-semibold tracking-tight text-gray-900">
+    <section id={id} className="mt-10 border-t border-line pt-8 first:mt-0 first:border-t-0 first:pt-0">
+      <h2 className="font-display text-[1.45rem] font-medium tracking-[-0.01em] text-foreground">
         {title}
       </h2>
-      <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-gray-600">
+      <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-muted">
         {children}
       </div>
     </section>

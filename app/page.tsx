@@ -14,8 +14,10 @@ export default function Home() {
   return (
     <PageFrame>
       <Header />
-      <main>
-        <Hero />
+      <main className="bg-background">
+        <div className="border-b border-line bg-background">
+          <Hero />
+        </div>
         <Section>
           <Problem />
         </Section>
@@ -25,7 +27,7 @@ export default function Home() {
         <Section id="features">
           <Features />
         </Section>
-        <Section id="use-cases">
+        <Section id="use-cases" className="bg-mist/50">
           <UseCases />
         </Section>
         <Section>
