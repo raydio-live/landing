@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { RaydioLogo } from "./logo";
 
 const footerLinks = {
@@ -13,52 +14,53 @@ const footerLinks = {
   Connect: [
     { label: "Contact", href: "mailto:hello@raydio.live" },
     { label: "API", href: "https://api.raydio.live" },
+    { label: "LLMs", href: "/llms.txt" },
   ],
 };
 
 export function Footer() {
   return (
-    <footer>
-      <div className="dot-grid dot-border-t grid lg:grid-cols-4">
-        <div className="p-8 sm:p-10">
-          <a href="/" className="inline-flex items-center gap-2.5">
-            <RaydioLogo className="h-10 w-auto" />
-            <span className="text-2xl font-semibold tracking-tight text-gray-900">
+    <footer className="bg-white">
+      <div className="grid gap-10 px-6 pb-14 pt-14 sm:px-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] lg:px-12">
+        <div>
+          <Link href="/" className="inline-flex items-center gap-2.5" aria-label="Raydio home">
+            <RaydioLogo className="h-9 w-auto" />
+            <span className="text-[1.4rem] font-semibold tracking-tight text-foreground">
               Raydio
             </span>
-          </a>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-500">
-            Instant push-to-talk for teams. Your crew&apos;s radio, in your pocket.
+          </Link>
+          <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-muted">
+            Instant push-to-talk for teams. Your crew&rsquo;s radio, in your
+            pocket.
           </p>
-          <p className="mt-6 font-mono text-sm text-gray-400">raydio.live</p>
         </div>
 
         {Object.entries(footerLinks).map(([category, links]) => (
-          <div key={category} className="p-8 sm:p-10">
-            <h4 className="text-xs font-medium uppercase tracking-[0.15em] text-gray-400">
+          <nav key={category} aria-label={category}>
+            <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-faint">
               {category}
-            </h4>
-            <ul className="mt-4 space-y-3">
+            </h3>
+            <ul className="mt-5 space-y-3.5">
               {links.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-gray-600 transition-colors hover:text-gray-900"
+                    className="text-[15px] text-muted transition-colors hover:text-foreground"
                   >
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         ))}
       </div>
 
-      <div className="dot-border-t flex flex-col items-center justify-between gap-3 px-8 py-6 sm:flex-row sm:px-10">
-        <p className="text-xs text-gray-400">
+      <div className="flex flex-col items-start justify-between gap-2 border-t border-line px-6 py-6 sm:flex-row sm:items-center sm:px-10 lg:px-12">
+        <p className="text-[13px] text-faint">
           &copy; {new Date().getFullYear()} Raydio. All rights reserved.
         </p>
-        <p className="text-xs text-gray-400">
+        <p className="font-mono text-xs text-faint">
           Live voice first. Recording &amp; history coming later.
         </p>
       </div>

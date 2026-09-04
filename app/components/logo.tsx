@@ -22,7 +22,7 @@ export function RaydioWordmark({ className = "" }: LogoProps) {
   return (
     <span className={`flex items-center gap-2 ${className}`.trim()}>
       <RaydioLogo />
-      <span className="text-sm font-semibold tracking-tight text-gray-900">
+      <span className="text-[15px] font-semibold tracking-tight text-foreground">
         Raydio
       </span>
     </span>

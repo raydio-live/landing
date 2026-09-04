@@ -1,17 +1,36 @@
 import { SectionHeading } from "./ui/section-heading";
-import { Highlight } from "./ui/highlight";
 import { FadeIn } from "./ui/fade-in";
 
 const trustPoints = [
   {
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="4" y="8.5" width="12" height="8" rx="2" />
+        <path d="M7 8.5V6.5a3 3 0 0 1 6 0v2" />
+      </svg>
+    ),
     title: "Member-only channels",
     description: "Channels are private to your group. No public feed, no stranger discovery.",
   },
   {
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="7" cy="10" r="3.2" />
+        <path d="M10.2 10H17M14.5 10v2.6M17 10v1.8" />
+      </svg>
+    ),
     title: "Email OTP login",
     description: "Sign in with a one-time code. No passwords to leak, no social graph required.",
   },
   {
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="7" cy="6.5" r="2.5" />
+        <path d="M2.5 16.5c0-2.5 2-4.2 4.5-4.2s4.5 1.7 4.5 4.2" />
+        <circle cx="14" cy="7.5" r="2" />
+        <path d="M13.5 12.6c2.2.2 4 1.8 4 4" />
+      </svg>
+    ),
     title: "Built for your crew",
     description: "Invite the people you work with. Simple profiles, clear identity on the channel.",
   },
@@ -19,28 +38,23 @@ const trustPoints = [
 
 export function Trust() {
   return (
-    <div className="px-6 py-16 sm:px-10 sm:py-24">
+    <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
       <SectionHeading
-        label="Private by design"
-        title={
-          <>
-            Your channel. <Highlight>Your people.</Highlight>
-          </>
-        }
+        title="Your channel. Your people."
         description="No spammy social features. No public broadcasts. Just your team's radio."
       />
 
-      <div className="dot-grid dot-border mt-12 grid sm:grid-cols-3">
+      <div className="mt-12 grid gap-10 sm:grid-cols-3 sm:gap-8">
         {trustPoints.map((point, i) => (
-          <FadeIn key={point.title} delay={i * 0.08}>
-            <div className="p-8">
-              <div className="mb-4 flex h-7 w-7 items-center justify-center rounded-full bg-primary-light">
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#2563EB" strokeWidth="2" aria-hidden="true">
-                  <path d="M13 4L6 11 3 8" />
-                </svg>
-              </div>
-              <h3 className="text-base font-semibold text-gray-900">{point.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-500">{point.description}</p>
+          <FadeIn key={point.title} delay={i * 0.07}>
+            <div>
+              <div className="text-brand">{point.icon}</div>
+              <h3 className="mt-4 text-[1.05rem] font-semibold tracking-tight text-foreground">
+                {point.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                {point.description}
+              </p>
             </div>
           </FadeIn>
         ))}

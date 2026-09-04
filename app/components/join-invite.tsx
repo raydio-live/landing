@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   PLAY_STORE_MARKET_URL,
@@ -53,14 +54,10 @@ export function JoinInvite({ token }: JoinInviteProps) {
   const [status, setStatus] = useState<"idle" | "opening" | "waiting">(
     "idle",
   );
-  const [android, setAndroid] = useState(false);
+  const [android] = useState(() => isAndroidUa());
 
   const webUrl = useMemo(() => httpsAppLink(token), [token]);
   const schemeUrl = useMemo(() => customSchemeUrl(token), [token]);
-
-  useEffect(() => {
-    setAndroid(isAndroidUa());
-  }, []);
 
   const openPlayStore = useCallback(() => {
     if (typeof window === "undefined") return;
@@ -113,28 +110,28 @@ export function JoinInvite({ token }: JoinInviteProps) {
 
   if (!valid) {
     return (
-      <div className="dot-border mx-auto max-w-lg bg-white p-8 sm:p-10">
-        <p className="text-xs font-medium uppercase tracking-[0.15em] text-gray-400">
+      <div className="mx-auto max-w-lg rounded-[1.75rem] border border-line bg-white p-8 shadow-[0_24px_48px_-24px_rgba(10,12,16,0.25)] sm:p-10">
+        <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-faint">
           Invalid invite
         </p>
-        <h1 className="mt-3 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
-          This join link doesn&apos;t look right
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+          This join link doesn&rsquo;t look right
         </h1>
-        <p className="mt-4 leading-relaxed text-gray-500">
+        <p className="mt-4 leading-relaxed text-muted">
           Invite codes are 8–64 characters (letters, numbers,{" "}
-          <code className="font-mono text-sm text-gray-700">-</code> and{" "}
-          <code className="font-mono text-sm text-gray-700">_</code>). Ask your
+          <code className="font-mono text-sm text-foreground">-</code> and{" "}
+          <code className="font-mono text-sm text-foreground">_</code>). Ask your
           teammate for a fresh link from the Raydio app.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="/" className="btn-primary h-11 px-6 text-sm">
+          <Link href="/" className="btn-primary">
             Go to raydio.live
-          </a>
+          </Link>
           <a
             href={PLAY_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary h-11 px-6 text-sm"
+            className="btn-ghost"
           >
             Get it on Google Play
           </a>
@@ -144,20 +141,20 @@ export function JoinInvite({ token }: JoinInviteProps) {
   }
 
   return (
-    <div className="dot-border mx-auto max-w-lg bg-white p-8 sm:p-10">
-      <p className="text-xs font-medium uppercase tracking-[0.15em] text-gray-400">
+    <div className="mx-auto max-w-lg rounded-[1.75rem] border border-line bg-white p-8 shadow-[0_24px_48px_-24px_rgba(10,12,16,0.25)] sm:p-10">
+      <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-faint">
         Join a channel
       </p>
-      <h1 className="mt-3 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
-        You&apos;re invited to a Raydio channel
+      <h1 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+        You&rsquo;re invited to a Raydio channel
       </h1>
-      <p className="mt-4 leading-relaxed text-gray-500">
-        Open the app to join instantly. Don&apos;t have Raydio yet? Install it
+      <p className="mt-4 leading-relaxed text-muted">
+        Open the app to join instantly. Don&rsquo;t have Raydio yet? Install it
         from Google Play, then come back to this link.
       </p>
 
-      <div className="dot-border mt-6 flex items-center gap-3 bg-gray-50/50 px-4 py-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-light text-primary">
+      <div className="mt-6 flex items-center gap-3 rounded-2xl bg-mist px-4 py-3.5">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-tint text-brand">
           <svg
             width="16"
             height="16"
@@ -165,6 +162,8 @@ export function JoinInvite({ token }: JoinInviteProps) {
             fill="none"
             stroke="currentColor"
             strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             aria-hidden="true"
           >
             <path d="M8 1v10M5 8l3 3 3-3" />
@@ -172,31 +171,31 @@ export function JoinInvite({ token }: JoinInviteProps) {
           </svg>
         </div>
         <div className="min-w-0">
-          <p className="text-xs text-gray-400">Invite code</p>
-          <p className="truncate font-mono text-sm text-gray-900">{token}</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-faint">Invite code</p>
+          <p className="truncate font-mono text-sm text-foreground">{token}</p>
         </div>
       </div>
 
-      <div className="mt-8 flex flex-col gap-3">
+      <div className="mt-6 flex flex-col gap-3">
         <button
           type="button"
           onClick={tryOpenApp}
-          className="btn-primary h-11 w-full px-6 text-sm sm:w-auto"
+          className="btn-primary w-full"
         >
           {status === "opening" ? "Opening Raydio…" : "Open in Raydio"}
         </button>
         <button
           type="button"
           onClick={openPlayStore}
-          className="btn-secondary h-11 w-full px-6 text-sm sm:w-auto"
+          className="btn-ghost w-full"
         >
           {android ? "Download on Google Play" : "Get it on Google Play"}
         </button>
       </div>
 
       {status === "waiting" && (
-        <div className="mt-6 space-y-3">
-          <p className="text-sm leading-relaxed text-gray-500">
+        <div className="mt-6 border-t border-line pt-6">
+          <p className="text-sm leading-relaxed text-muted">
             Nothing opened? You probably need the app first. Install Raydio from
             Google Play, then open this invite again to join the channel.
           </p>
@@ -204,14 +203,15 @@ export function JoinInvite({ token }: JoinInviteProps) {
             href={PLAY_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex text-sm font-medium text-primary hover:text-primary-hover"
+            className="group mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand"
           >
-            Open Play Store listing →
+            Open Play Store listing
+            <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
           </a>
         </div>
       )}
 
-      <p className="mt-8 font-mono text-xs text-gray-400 break-all">
+      <p className="mt-8 break-all font-mono text-xs text-faint">
         {webUrl}
       </p>
     </div>

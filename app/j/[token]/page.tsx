@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { RaydioWordmark } from "../../components/logo";
 import { Footer } from "../../components/footer";
 import { PageFrame } from "../../components/ui/page-frame";
@@ -50,23 +51,23 @@ export default async function JoinTokenPage({ params }: Props) {
 
   return (
     <PageFrame>
-      <header className="section-divider">
+      <header className="border-b border-line bg-background">
         <div className="flex h-14 items-center justify-between px-6 sm:px-10">
-          <a href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2" aria-label="Raydio home">
             <RaydioWordmark />
-          </a>
+          </Link>
           <a
             href={PLAY_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+            className="rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-mist hover:text-foreground"
           >
             Get the app
           </a>
         </div>
       </header>
 
-      <main className="section-divider">
+      <main className="border-b border-line bg-mist/50">
         <div className="px-6 py-16 sm:px-10 sm:py-24">
           <JoinInvite token={token} />
         </div>

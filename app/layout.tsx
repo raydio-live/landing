@@ -45,7 +45,7 @@ export default function RootLayout({
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
       style={{ colorScheme: "light" }}
     >
-      <body className="min-h-full flex flex-col overflow-x-hidden bg-white text-gray-900">
+      <body className="min-h-full flex flex-col overflow-x-hidden bg-mist text-foreground">
         {children}
       </body>
     </html>

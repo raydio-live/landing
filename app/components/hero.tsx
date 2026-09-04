@@ -1,79 +1,87 @@
 import { PLAY_STORE_URL } from "../lib/store";
 import { FadeIn } from "./ui/fade-in";
-import { Highlight } from "./ui/highlight";
 import { PhoneMockup } from "./phone-mockup";
 
 const audiences = [
-  { label: "Field teams", tag: "Ops" },
-  { label: "Event staff", tag: "Events" },
-  { label: "Sports crews", tag: "Sports" },
-  { label: "Friend groups", tag: "Social" },
+  "Field ops",
+  "Event crews",
+  "Warehouses",
+  "Venues",
+  "Delivery fleets",
+  "Coaching staff",
+  "Road trips",
+  "Production sets",
 ];
 
 export function Hero() {
   return (
     <>
-      <div className="px-6 py-20 text-center sm:px-10 sm:py-28">
+      <div className="mx-auto max-w-3xl px-6 pb-14 pt-16 text-center sm:pb-16 sm:pt-24">
         <FadeIn>
-          <h1 className="mx-auto max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-            Your team&apos;s radio.{" "}
-            <Highlight>In your pocket.</Highlight>
+          <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white py-1.5 pl-3 pr-4">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute h-full w-full rounded-full bg-brand animate-live-pulse" />
+            </span>
+            <span className="text-[13px] font-medium text-muted">
+              Live push-to-talk for teams
+            </span>
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.06}>
+          <h1 className="mt-6 text-balance text-[2.75rem] font-semibold leading-[1.04] tracking-[-0.03em] sm:text-6xl lg:text-[4.5rem]">
+            Your team&rsquo;s radio. In your pocket.
           </h1>
         </FadeIn>
 
-        <FadeIn delay={0.08}>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-gray-500 sm:text-lg">
+        <FadeIn delay={0.12}>
+          <p className="mx-auto mt-6 max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-muted">
             Raydio is a realtime walkie-talkie app. Open a channel, hold the
             button, and speak. No call setup. No video overhead.
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.12}>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <FadeIn delay={0.18}>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href={PLAY_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary h-11 px-6 text-sm"
+              className="btn-primary"
             >
-              Start free
+              Get the app — it&rsquo;s free
             </a>
-            <a href="#how-it-works" className="btn-secondary h-11 px-6 text-sm">
+            <a href="#how-it-works" className="btn-ghost">
               How it works
             </a>
           </div>
-        </FadeIn>
-
-        <FadeIn delay={0.16}>
-          <p className="mt-6 text-sm text-gray-400">
-            Not a video call. Not a podcast. A digital walkie-talkie for people
-            who already work together.
+          <p className="mt-4 text-sm text-faint">
+            Free to start · First channel in under a minute
           </p>
         </FadeIn>
       </div>
 
-      <div className="section-divider flex justify-center bg-gray-50/50 px-6 py-16 sm:px-10 sm:py-20">
-        <FadeIn delay={0.1}>
-          <PhoneMockup />
-        </FadeIn>
-      </div>
-
-      <div className="section-divider px-6 py-12 sm:px-10">
-        <p className="mb-8 text-center text-sm text-gray-400">
-          Built for crews who need to talk now
-        </p>
-        <div className="dot-grid dot-border grid grid-cols-2 sm:grid-cols-4">
-          {audiences.map((item) => (
-            <div
-              key={item.label}
-              className="flex flex-col items-center justify-center px-4 py-6 text-center"
-            >
-              <span className="text-sm font-medium text-gray-900">{item.label}</span>
-              <span className="mt-1 text-xs text-gray-400">{item.tag}</span>
-            </div>
-          ))}
+      <FadeIn delay={0.1} className="px-4 sm:px-6">
+        <div className="mx-auto max-w-md rounded-2xl bg-mist px-6 pb-8 pt-6">
+          <div className="mb-6 flex items-center justify-between text-[13px] font-medium text-faint">
+            <span>CH-04 · Ops Crew</span>
+            <span className="inline-flex items-center gap-1.5 font-semibold text-brand">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand animate-live-pulse" />
+              Live
+            </span>
+          </div>
+          <div className="animate-float-soft">
+            <PhoneMockup />
+          </div>
+          <p className="mt-6 text-center text-[13px] font-medium text-faint">
+            Hold the button to talk
+          </p>
         </div>
-      </div>
+      </FadeIn>
+
+      <p className="mx-auto max-w-2xl px-6 pb-16 pt-10 text-center text-sm leading-loose text-faint">
+        Built for {audiences.join(" · ")}
+      </p>
     </>
   );
 }

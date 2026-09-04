@@ -1,7 +1,6 @@
 import { PageFrame, Section } from "./components/ui/page-frame";
 import { Header } from "./components/header";
 import { Hero } from "./components/hero";
-import { Problem } from "./components/problem";
 import { HowItWorks } from "./components/how-it-works";
 import { Features } from "./components/features";
 import { UseCases } from "./components/use-cases";
@@ -14,11 +13,10 @@ export default function Home() {
   return (
     <PageFrame>
       <Header />
-      <main>
-        <Hero />
-        <Section>
-          <Problem />
-        </Section>
+      <main className="bg-background">
+        <div className="border-b border-line bg-background">
+          <Hero />
+        </div>
         <Section id="how-it-works">
           <HowItWorks />
         </Section>

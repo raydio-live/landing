@@ -1,5 +1,4 @@
 import { SectionHeading } from "./ui/section-heading";
-import { Highlight } from "./ui/highlight";
 import { FadeIn } from "./ui/fade-in";
 
 const useCases = [
@@ -12,26 +11,30 @@ const useCases = [
 
 export function UseCases() {
   return (
-    <div className="px-6 py-16 sm:px-10 sm:py-24">
+    <div className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
       <SectionHeading
-        label="Use cases"
-        title={
-          <>
-            Talk like you&apos;re on the <Highlight>same channel</Highlight>
-          </>
-        }
+        title="One channel, every crew."
         description="Built for crews who need clear voice now — not another meeting invite."
       />
 
-      <div className="dot-grid dot-border mt-12 grid sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 border-t border-line">
         {useCases.map((item, i) => (
-          <FadeIn key={item.title} delay={i * 0.06}>
-            <div className="h-full p-8">
-              <span className="text-xs font-medium text-gray-300">
-                {String(i + 1).padStart(2, "0")}
+          <FadeIn key={item.title} delay={Math.min(i, 3) * 0.05}>
+            <div className="group flex items-center gap-5 border-b border-line py-5">
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold tracking-tight text-foreground">
+                  {item.title}
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted">
+                  {item.description}
+                </p>
+              </div>
+              <span
+                aria-hidden="true"
+                className="shrink-0 text-lg text-faint transition-transform duration-200 group-hover:translate-x-1 group-hover:text-brand"
+              >
+                →
               </span>
-              <h3 className="mt-3 text-base font-semibold text-gray-900">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-500">{item.description}</p>
             </div>
           </FadeIn>
         ))}
