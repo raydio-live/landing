@@ -37,7 +37,7 @@ export function Footer() {
 
         {Object.entries(footerLinks).map(([category, links]) => (
           <nav key={category} aria-label={category}>
-            <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-faint">
+            <h3 className="text-sm font-semibold text-foreground">
               {category}
             </h3>
             <ul className="mt-5 space-y-3.5">
@@ -60,7 +60,7 @@ export function Footer() {
         <p className="text-[13px] text-faint">
           &copy; {new Date().getFullYear()} Raydio. All rights reserved.
         </p>
-        <p className="font-mono text-xs text-faint">
+        <p className="text-[13px] text-faint">
           Live voice first. Recording &amp; history coming later.
         </p>
       </div>

@@ -1,8 +1,12 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
+/**
+ * Reveals its children once they scroll into view.
+ * Hiding is done in CSS (see `[data-reveal]` in globals.css) so the content is
+ * still visible without JS, and reduced-motion users skip the transition.
+ */
 export function FadeIn({
   children,
   className = "",
@@ -12,21 +16,33 @@ export function FadeIn({
   className?: string;
   delay?: number;
 }) {
-  const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
 
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      el.dataset.shown = "";
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.dataset.shown = "";
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -60px 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const style = delay ? ({ "--reveal-delay": `${delay}s` } as CSSProperties) : undefined;
 
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
-    >
+    <div ref={ref} data-reveal="" className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }

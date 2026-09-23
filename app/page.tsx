@@ -1,4 +1,3 @@
-import { PageFrame, Section } from "./components/ui/page-frame";
 import { Header } from "./components/header";
 import { Hero } from "./components/hero";
 import { HowItWorks } from "./components/how-it-works";
@@ -11,32 +10,34 @@ import { Footer } from "./components/footer";
 
 export default function Home() {
   return (
-    <PageFrame>
+    <div className="w-full bg-background">
       <Header />
-      <main className="bg-background">
-        <div className="border-b border-line bg-background">
-          <Hero />
-        </div>
-        <Section id="how-it-works">
+      <main>
+        <Hero />
+        <section id="how-it-works">
           <HowItWorks />
-        </Section>
-        <Section id="features">
+        </section>
+        <section id="features" className="border-t border-line">
           <Features />
-        </Section>
-        <Section id="use-cases">
+        </section>
+        <section id="use-cases" className="border-t border-line">
           <UseCases />
-        </Section>
-        <Section>
+        </section>
+        <section className="border-t border-line">
           <Trust />
-        </Section>
-        <Section id="join">
+        </section>
+        <section id="join" className="border-t border-line">
           <JoinChannel />
-        </Section>
-        <Section id="download">
+        </section>
+        <section id="download">
           <CtaBand />
-        </Section>
+        </section>
       </main>
-      <Footer />
-    </PageFrame>
+      <div className="border-t border-line">
+        <div className="mx-auto max-w-6xl">
+          <Footer />
+        </div>
+      </div>
+    </div>
   );
 }
