@@ -80,7 +80,7 @@ export function PhoneMockup({
 
   return (
     <div ref={rootRef} className="relative mx-auto w-[272px] select-none sm:w-[296px]">
-      <div className="relative rounded-[3rem] bg-ink p-2.5 shadow-[0_40px_80px_-24px_rgba(10,12,16,0.45),0_12px_24px_-12px_rgba(10,12,16,0.25)]">
+      <div className="relative rounded-[3rem] bg-ink p-2.5 shadow-[0_40px_80px_-24px_rgba(21,27,38,0.45),0_12px_24px_-12px_rgba(21,27,38,0.25)]">
         <div className="overflow-hidden rounded-[2.45rem] bg-white">
           <div className="flex items-center justify-center pt-3">
             <span className="h-5 w-24 rounded-full bg-ink" aria-hidden="true" />
@@ -89,7 +89,7 @@ export function PhoneMockup({
           <div className="flex items-center justify-between px-6 pb-2 pt-2">
             <span className="text-[10px] font-semibold tabular-nums text-faint">9:41</span>
             <div className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand animate-live-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-signal animate-live-pulse" />
               <span className="text-[10px] font-semibold tracking-[0.12em] text-brand">LIVE</span>
             </div>
           </div>
@@ -105,7 +105,7 @@ export function PhoneMockup({
           <div className="px-4 py-5">
             <div
               className={`rounded-2xl p-4 transition-colors duration-300 ${
-                talking ? "bg-brand text-white" : "bg-brand-tint/70"
+                talking ? "bg-ink text-white" : "bg-brand-tint/70"
               }`}
             >
               <div className="flex items-center gap-3">
@@ -115,7 +115,7 @@ export function PhoneMockup({
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: "spring", stiffness: 420, damping: 26 }}
                   className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${
-                    talking ? "bg-white text-brand" : "bg-brand text-white"
+                    talking ? "bg-signal text-white" : "bg-brand text-white"
                   }`}
                 >
                   {speaker[0]}
@@ -130,13 +130,13 @@ export function PhoneMockup({
                   </p>
                   <p
                     className={`text-xs font-medium tabular-nums ${
-                      talking ? "text-white/85" : "text-brand"
+                      talking ? "text-white/80" : "text-brand"
                     }`}
                   >
                     {talking ? `On air · ${formatClock(seconds)}` : "Speaking now"}
                   </p>
                 </div>
-                <WaveformBars className={talking ? "bg-white/80" : "bg-brand/60"} />
+                <WaveformBars className={talking ? "bg-signal" : "bg-brand/60"} />
               </div>
             </div>
 
@@ -164,7 +164,7 @@ export function PhoneMockup({
             <div className="relative flex h-28 w-28 items-center justify-center">
               <span
                 className={`absolute inset-0 rounded-full border animate-pulse-ring ${
-                  talking ? "border-brand/70" : "border-brand/40"
+                  talking ? "border-signal/70" : "border-brand/40"
                 }`}
                 aria-hidden="true"
               />
@@ -195,8 +195,8 @@ export function PhoneMockup({
                 }}
                 onBlur={stop}
                 onContextMenu={(e) => e.preventDefault()}
-                className={`relative flex h-[4.5rem] w-[4.5rem] touch-none items-center justify-center rounded-full text-white shadow-[0_10px_28px_rgba(10,12,16,0.35),inset_0_1px_0_rgba(255,255,255,0.22)] transition-[transform,background-color] duration-200 [-webkit-touch-callout:none] ${
-                  talking ? "scale-95 bg-brand" : "bg-ink hover:scale-[1.03]"
+                className={`relative flex h-[4.5rem] w-[4.5rem] touch-none items-center justify-center rounded-full text-white shadow-[0_10px_28px_rgba(21,27,38,0.35),inset_0_1px_0_rgba(255,255,255,0.22)] transition-[transform,background-color] duration-200 [-webkit-touch-callout:none] ${
+                  talking ? "scale-95 bg-signal" : "bg-ink hover:scale-[1.03]"
                 }`}
               >
                 <MicIcon size={30} />

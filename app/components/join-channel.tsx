@@ -38,7 +38,7 @@ export function JoinChannel() {
             <div className="flex items-center justify-between text-[13px] font-medium text-faint">
               <span>Incoming invite</span>
               <span className="inline-flex items-center gap-1.5 font-semibold text-brand">
-                <span className="h-1.5 w-1.5 rounded-full bg-brand animate-live-pulse" aria-hidden="true" />
+                <span className="h-1.5 w-1.5 rounded-full bg-signal animate-live-pulse" aria-hidden="true" />
                 Open
               </span>
             </div>

@@ -19,15 +19,16 @@ export function Hero() {
     <section id="top" className="relative isolate overflow-hidden">
       {/* Ambient layers: a soft blue bloom and a dotted grid that fades out. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-[-18rem] h-[44rem] w-[64rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(11,95,255,0.13),transparent)] lg:left-[72%]" />
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(10,12,16,0.09)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_60%_35%,black,transparent)]" />
+        <div className="absolute left-1/2 top-[-18rem] h-[44rem] w-[64rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(30,79,163,0.11),transparent)] lg:left-[72%]" />
+        <div className="absolute right-[-12rem] top-[22rem] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(228,87,46,0.07),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(21,27,38,0.08)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_60%_35%,black,transparent)]" />
       </div>
 
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 pb-20 pt-32 sm:pt-36 lg:grid-cols-[1.08fr_1fr] lg:gap-10 lg:pb-28 lg:pt-40">
         <div className="text-center lg:text-left">
           <FadeIn>
             <p className="inline-flex items-center gap-2.5 rounded-full bg-white py-1.5 pl-3 pr-4 ring-1 ring-line">
-              <span className="h-2 w-2 rounded-full bg-brand animate-live-pulse" aria-hidden="true" />
+              <span className="h-2 w-2 rounded-full bg-signal animate-live-pulse" aria-hidden="true" />
               <span className="text-[13px] font-medium text-muted">
                 Live push-to-talk for teams
               </span>
@@ -74,7 +75,7 @@ export function Hero() {
         </FadeIn>
       </div>
 
-      <div className="border-y border-line bg-white/60">
+      <div className="border-y border-line bg-white/50">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-7 sm:flex-row sm:gap-8">
           <p className="shrink-0 text-sm font-medium text-foreground">Built for</p>
           <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 sm:justify-start">

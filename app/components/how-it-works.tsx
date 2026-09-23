@@ -30,7 +30,7 @@ function HoldVisual() {
       </span>
       <p className="text-[13px] font-medium text-muted">Holding…</p>
       <div className="ml-auto">
-        <WaveformBars count={10} />
+        <WaveformBars count={10} className="bg-signal/80" />
       </div>
     </div>
   );
@@ -52,7 +52,7 @@ function ListenersVisual() {
         ))}
       </div>
       <p className="text-[13px] font-medium text-muted">4 hearing you live</p>
-      <span className="ml-auto h-2 w-2 rounded-full bg-brand animate-live-pulse" aria-hidden="true" />
+      <span className="ml-auto h-2 w-2 rounded-full bg-signal animate-live-pulse" aria-hidden="true" />
     </div>
   );
 }

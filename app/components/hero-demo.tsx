@@ -24,7 +24,7 @@ export function HeroDemo() {
         <PhoneMockup onTalkingChange={setTalking} />
       </motion.div>
       <p className="relative mt-7 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[13px] font-medium text-muted ring-1 ring-line">
-        <span className={`h-1.5 w-1.5 rounded-full ${talking ? "bg-brand" : "bg-faint"}`} aria-hidden="true" />
+        <span className={`h-1.5 w-1.5 rounded-full ${talking ? "bg-signal animate-live-pulse" : "bg-faint"}`} aria-hidden="true" />
         {talking ? "You’re on air — let go to release" : "Try it: press and hold the button"}
       </p>
     </div>

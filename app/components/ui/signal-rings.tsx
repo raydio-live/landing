@@ -28,7 +28,7 @@ export function SignalRings({
         <span
           key={delay}
           className={`animate-ring-out absolute inset-0 rounded-full border transition-colors duration-500 ${
-            active ? "border-brand/50" : "border-brand/20"
+            active ? "border-signal/50" : "border-brand/20"
           }`}
           style={{
             animationDelay: `${delay}s`,

@@ -38,7 +38,7 @@ function PushToTalkVisual() {
   return (
     <div className="flex w-full items-center gap-5 rounded-2xl bg-white p-5">
       <span className="relative flex h-16 w-16 shrink-0 items-center justify-center">
-        <span className="absolute inset-0 rounded-full border border-brand/40 animate-pulse-ring" />
+        <span className="absolute inset-0 rounded-full border border-signal/50 animate-pulse-ring" />
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-ink text-white">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
@@ -48,9 +48,12 @@ function PushToTalkVisual() {
       </span>
       <div className="min-w-0 flex-1">
         <p className="text-sm font-semibold text-foreground">You</p>
-        <p className="text-xs font-medium text-brand">On air</p>
+        <p className="inline-flex items-center gap-1.5 text-xs font-medium text-muted">
+          <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+          On air
+        </p>
       </div>
-      <WaveformBars count={10} />
+      <WaveformBars count={10} className="bg-signal/80" />
     </div>
   );
 }
@@ -109,7 +112,7 @@ function ChannelsVisual() {
     <ul className="w-full divide-y divide-line rounded-2xl bg-white px-4">
       {channels.map((c) => (
         <li key={c.name} className="flex items-center gap-2.5 py-2.5">
-          <span className={`h-1.5 w-1.5 rounded-full ${c.live ? "bg-brand" : "bg-line"}`} />
+          <span className={`h-1.5 w-1.5 rounded-full ${c.live ? "bg-signal" : "bg-line"}`} />
           <span className="text-[13px] font-medium text-foreground">{c.name}</span>
           <span className="ml-auto text-[11px] tabular-nums text-faint">{c.count} members</span>
         </li>

@@ -110,7 +110,7 @@ export function JoinInvite({ token }: JoinInviteProps) {
 
   if (!valid) {
     return (
-      <div className="mx-auto max-w-lg rounded-[1.75rem] border border-line bg-white p-8 shadow-[0_24px_48px_-24px_rgba(10,12,16,0.25)] sm:p-10">
+      <div className="mx-auto max-w-lg rounded-[1.75rem] border border-line bg-white p-8 shadow-[0_24px_48px_-24px_rgba(21,27,38,0.22)] sm:p-10">
         <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-faint">
           Invalid invite
         </p>
@@ -141,7 +141,7 @@ export function JoinInvite({ token }: JoinInviteProps) {
   }
 
   return (
-    <div className="mx-auto max-w-lg rounded-[1.75rem] border border-line bg-white p-8 shadow-[0_24px_48px_-24px_rgba(10,12,16,0.25)] sm:p-10">
+    <div className="mx-auto max-w-lg rounded-[1.75rem] border border-line bg-white p-8 shadow-[0_24px_48px_-24px_rgba(21,27,38,0.22)] sm:p-10">
       <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-faint">
         Join a channel
       </p>

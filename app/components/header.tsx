@@ -71,7 +71,7 @@ export function Header() {
       <div
         className={`mx-auto flex h-14 max-w-6xl items-center justify-between rounded-full pl-5 pr-2 transition-[background-color,box-shadow,backdrop-filter] duration-300 ${
           solid
-            ? "bg-white/80 ring-1 ring-line backdrop-blur-xl backdrop-saturate-150"
+            ? "bg-background/80 ring-1 ring-line backdrop-blur-xl backdrop-saturate-150"
             : "bg-transparent ring-1 ring-transparent"
         }`}
       >
@@ -112,7 +112,7 @@ export function Header() {
             href={PLAY_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-10 items-center rounded-full bg-ink px-5 text-sm font-semibold text-white transition-colors hover:bg-brand"
+            className="inline-flex h-10 items-center rounded-full bg-ink px-5 text-sm font-semibold text-white transition-colors hover:bg-ink-soft"
           >
             Get the app
           </a>
