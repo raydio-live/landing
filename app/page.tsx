@@ -33,11 +33,7 @@ export default function Home() {
           <CtaBand />
         </section>
       </main>
-      <div className="border-t border-line">
-        <div className="mx-auto max-w-6xl">
-          <Footer />
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 }
