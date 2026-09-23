@@ -38,21 +38,23 @@ const trustPoints = [
 
 export function Trust() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+    <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
       <SectionHeading
         title="Your channel. Your people."
         description="No spammy social features. No public broadcasts. Just your team's radio."
       />
 
-      <div className="mt-12 grid gap-10 sm:grid-cols-3 sm:gap-8">
+      <div className="mt-16 grid gap-10 border-t border-line pt-12 sm:grid-cols-3 sm:gap-10">
         {trustPoints.map((point, i) => (
           <FadeIn key={point.title} delay={i * 0.07}>
             <div>
-              <div className="text-brand">{point.icon}</div>
-              <h3 className="mt-4 text-[1.05rem] font-semibold tracking-tight text-foreground">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-tint text-brand">
+                {point.icon}
+              </div>
+              <h3 className="mt-5 text-lg font-semibold tracking-tight text-foreground">
                 {point.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
+              <p className="mt-2 text-[15px] leading-relaxed text-muted">
                 {point.description}
               </p>
             </div>

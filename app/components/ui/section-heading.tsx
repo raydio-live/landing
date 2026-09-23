@@ -2,39 +2,26 @@ import type { ReactNode } from "react";
 import { FadeIn } from "./fade-in";
 
 export function SectionHeading({
-  index,
-  label,
   title,
   description,
   align = "center",
-  dark = false,
+  className = "",
 }: {
-  index?: string;
-  label?: string;
   title: ReactNode;
-  description?: string;
+  description?: ReactNode;
   align?: "center" | "left";
-  dark?: boolean;
+  className?: string;
 }) {
-  const alignClass = align === "center" ? "text-center mx-auto items-center" : "text-left items-start";
-  const kickerColor = dark ? "text-white/50" : "text-faint";
-  const titleColor = dark ? "text-white" : "text-foreground";
-  const descColor = dark ? "text-white/60" : "text-muted";
+  const alignClass =
+    align === "center" ? "mx-auto items-center text-center" : "items-start text-left";
 
   return (
-    <FadeIn className={`flex max-w-2xl flex-col ${alignClass}`}>
-      {(index || label) && (
-        <p className={`flex items-center gap-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.22em] ${kickerColor}`}>
-          {index && <span className="text-brand">{index}</span>}
-          {index && label && <span aria-hidden="true">/</span>}
-          {label && <span>{label}</span>}
-        </p>
-      )}
-      <h2 className={`mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.02em] text-balance sm:text-[2.75rem] ${titleColor}`}>
+    <FadeIn className={`flex max-w-2xl flex-col ${alignClass} ${className}`.trim()}>
+      <h2 className="text-balance text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.025em] text-foreground sm:text-5xl">
         {title}
       </h2>
       {description && (
-        <p className={`mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-pretty ${descColor}`}>
+        <p className="mt-5 max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-muted">
           {description}
         </p>
       )}
