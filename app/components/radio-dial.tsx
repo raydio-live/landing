@@ -100,12 +100,14 @@ export function RadioDial() {
         layout
         initial={false}
         animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 16 }}
-        style={{ borderRadius: open ? 24 : 999, pointerEvents: visible ? "auto" : "none" }}
+        // One radius for both states: at the closed height (~46px) 24px already reads as a
+        // full pill, so the shape never switches mid-animation.
+        style={{ borderRadius: 24, pointerEvents: visible ? "auto" : "none" }}
         transition={{
           layout: { type: "spring", bounce: 0, duration: 0.4 },
           default: { type: "spring", bounce: 0, duration: 0.45 },
         }}
-        className="flex flex-col-reverse overflow-hidden border border-white/10 bg-navy/95 text-white shadow-float backdrop-blur-xl"
+        className="relative flex flex-col-reverse overflow-hidden border border-white/10 bg-navy/95 text-white shadow-float backdrop-blur-xl"
       >
         <motion.button
           ref={triggerRef}
@@ -142,7 +144,9 @@ export function RadioDial() {
           />
         </motion.button>
 
-        <AnimatePresence initial={false}>
+        {/* popLayout pulls the exiting menu out of flow at once, so the shell starts
+            shrinking immediately instead of waiting for the fade to finish. */}
+        <AnimatePresence initial={false} mode="popLayout">
           {open && (
             <motion.nav
               id="dial-menu"

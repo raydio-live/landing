@@ -15,7 +15,6 @@ const footerLinks: Record<string, FooterLink[]> = {
   ],
   Connect: [
     { label: "Contact", href: "mailto:hello@raydio.live" },
-    { label: "API", href: "https://api.raydio.live", external: true },
     { label: "LLMs", href: "/llms.txt" },
   ],
 };
