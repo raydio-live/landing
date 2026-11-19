@@ -1,43 +1,143 @@
 @import "tailwindcss";
+/* Declared explicitly so the hero stage's utilities are always generated,
+   whatever the dev watcher has seen. */
+@source "./components/hero-stage";
 
+/* ──────────────────────────────────────────────────────────────────────────
+   Raydio — one hue.
+   Every colour on the page is a step of the logo's own azure (#1383F9) or a
+   blue-tinted neutral. Text on white or on the tints clears WCAG AA
+   (see the ratios beside each token); white text only ever sits on
+   --primary or darker.
+   ────────────────────────────────────────────────────────────────────────── */
 :root {
   color-scheme: light;
-  /* Warm paper neutrals with slate ink taken from the logo mark. */
-  --background: #fafaf8;
-  --foreground: #151b26;
-  --ink: #1b2330;
-  --ink-soft: #2c3646;
-  --mist: #f1f1ee;
-  --line: #e4e4df;
-  --muted: #4f5866;
-  --faint: #636b78;
-  /* Denim: a deep, quiet blue that sits with the mark instead of shouting. */
-  --brand: #1e4fa3;
-  --brand-hover: #173f84;
-  --brand-tint: #e9eff8;
-  --brand-soft: #c3d3ec;
-  /* Signal: the "on air" light. Reserved for live and talking states. */
-  --signal: #e4572e;
-  --signal-tint: #fce9e2;
+
+  /* Grounds */
+  --background: #ffffff;
+  --tint: #f4f8ff; /* alternating sections */
+  --mist: #ebf2fe; /* wells, chips, quiet surfaces */
+  --pale: #dbe8fd; /* selected rows, soft fills */
+  --line: #dde6f4; /* hairlines */
+  --line-strong: #c4d4ec;
+
+  /* Ink — blue-black, never grey */
+  --ink: #0b1a33; /* 17.4:1 on white */
+  --heading: #0b1a33;
+  --foreground: #1b2a47; /* 14.1:1 */
+  --muted: #485673; /* 7.4:1 on white, 6.6:1 on --mist */
+  --faint: #5b6884; /* 5.6:1 on white, 5.0:1 on --mist */
+
+  /* Blue ramp, anchored on the logo */
+  --azure: #1383f9; /* logo stop; marks, glows, icons (3.7:1, non-text) */
+  --primary: #0862e0; /* buttons, links, white text 5.5:1 */
+  --primary-hover: #0753c4; /* 6.9:1 */
+  --deep: #0b3a8f; /* 10.4:1 */
+  --navy: #0a1f4d; /* on-air fills, 16:1 */
+  --night: #061230;
+  --sky: #8cc4ff; /* accents on navy, 8.7:1 */
+  --brand-tint: #e6f0ff;
+  --brand-soft: #b9d6fe;
+
+
+  --shadow-color: 11 26 51;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-ink: var(--ink);
+  --color-tint: var(--tint);
   --color-mist: var(--mist);
+  --color-pale: var(--pale);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-heading: var(--heading);
+  --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
-  --color-brand: var(--brand);
-  --color-brand-hover: var(--brand-hover);
+  --color-azure: var(--azure);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-deep: var(--deep);
+  --color-navy: var(--navy);
+  --color-night: var(--night);
+  --color-sky: var(--sky);
+  --color-brand: var(--primary);
   --color-brand-tint: var(--brand-tint);
   --color-brand-soft: var(--brand-soft);
-  --color-ink-soft: var(--ink-soft);
-  --color-signal: var(--signal);
-  --color-signal-tint: var(--signal-tint);
-  --font-sans: var(--font-geist);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Type scale: one step per role, each with its own leading and tracking. */
+  --text-display: 3.875rem; /* 62 */
+  --text-display--line-height: 1.06;
+  --text-display--letter-spacing: -0.04em;
+  --text-display-sm: clamp(2.125rem, 10.3vw, 2.5rem); /* 37 at 360, 40 from 390 */
+  --text-display-sm--line-height: 1.08;
+  --text-display-sm--letter-spacing: -0.035em;
+  --text-title: 3.25rem; /* 52 */
+  --text-title--line-height: 1.08;
+  --text-title--letter-spacing: -0.035em;
+  --text-title-sm: clamp(2rem, 9.2vw, 2.25rem); /* 33 at 360, 36 from 392 */
+  --text-title-sm--line-height: 1.12;
+  --text-title-sm--letter-spacing: -0.03em;
+  --text-h3: 1.25rem; /* 20 */
+  --text-h3--line-height: 1.4;
+  --text-h3--letter-spacing: -0.015em;
+  --text-lead: 1.1875rem; /* 19 */
+  --text-lead--line-height: 1.6;
+  --text-body: 1rem; /* 16 */
+  --text-body--line-height: 1.65;
+  --text-small: 0.875rem; /* 14 */
+  --text-small--line-height: 1.5;
+  --text-caption: 0.8125rem; /* 13 */
+  --text-caption--line-height: 1.45;
+
+  --shadow-card: 0 1px 2px rgb(var(--shadow-color) / 0.05), 0 4px 12px -4px rgb(var(--shadow-color) / 0.06);
+  --shadow-raised: 0 1px 2px rgb(var(--shadow-color) / 0.06), 0 12px 32px -12px rgb(var(--shadow-color) / 0.16);
+  --shadow-float: 0 2px 4px rgb(var(--shadow-color) / 0.06), 0 24px 56px -16px rgb(var(--shadow-color) / 0.28);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-wiggle: wiggle 0.7s ease-in-out infinite;
+  --animate-caret: caret 1s steps(1) infinite;
+  --animate-arc: arc 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes wiggle {
+    0%, 100% { transform: scaleY(0.45); }
+    50% { transform: scaleY(1); }
+  }
+  @keyframes caret {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes arc {
+    0% { transform: scale(0.4); opacity: 0.9; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+}
+
+/* ── Layout primitives ──
+   One container and one section rhythm for every block on the page, so every
+   left edge lines up with the logo and every right edge with the header CTA. */
+@utility container-page {
+  width: 100%;
+  max-width: 76rem; /* 1216 incl. gutters → 1136 of content at desktop */
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 6rem;
+
+  @media (width >= 64rem) {
+    padding-block: 8.5rem;
+  }
 }
 
 * {
@@ -52,7 +152,8 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist), system-ui, sans-serif;
+  font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -63,148 +164,165 @@ section[id] {
 }
 
 ::selection {
-  background: var(--brand-tint);
-  color: var(--foreground);
+  background: var(--primary);
+  color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--brand);
+  outline: 2px solid var(--primary);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
-/* ── Buttons ── */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  height: 3rem;
-  padding-inline: 1.75rem;
-  border-radius: 999px;
-  background: var(--ink);
-  color: #ffffff;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  box-shadow: 0 1px 2px rgba(21, 27, 38, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-}
+@layer components {
+  /* ── Buttons ──
+     Primary: a vibrant two-stop blue with a 1px inner highlight. Both stops
+     keep white text above 4.7:1. Secondary: white with a blue hairline. */
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    height: 3rem;
+    padding-inline: 1.5rem;
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+      background-color 0.2s var(--ease-out-soft),
+      box-shadow 0.2s var(--ease-out-soft),
+      transform 0.15s var(--ease-out-soft);
+  }
 
-.btn-primary:hover {
-  background: var(--ink-soft);
-  box-shadow: 0 8px 24px -6px rgba(21, 27, 38, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
+  .btn-primary {
+    color: #ffffff;
+    background: linear-gradient(180deg, #0a6cf0 0%, #0757d0 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.22),
+      inset 0 0 0 1px rgb(255 255 255 / 0.06),
+      0 1px 2px rgb(7 83 196 / 0.3),
+      0 8px 20px -8px rgb(8 98 224 / 0.55);
+  }
 
-.btn-primary:active {
-  transform: translateY(1px);
-}
+  .btn-primary:hover {
+    background: linear-gradient(180deg, #0862e0 0%, #064bb4 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.22),
+      inset 0 0 0 1px rgb(255 255 255 / 0.06),
+      0 1px 2px rgb(7 83 196 / 0.3),
+      0 12px 28px -10px rgb(8 98 224 / 0.6);
+  }
 
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  height: 3rem;
-  padding-inline: 1.75rem;
-  border-radius: 999px;
-  background: #ffffff;
-  color: var(--foreground);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  border: 1px solid var(--line);
-  transition: border-color 0.18s ease, background 0.18s ease;
-}
+  /* .btn-ghost is kept as an alias: the invite page (/j/…) uses it */
+  .btn-secondary,
+  .btn-ghost {
+    color: var(--ink);
+    background: #ffffff;
+    box-shadow:
+      inset 0 0 0 1px var(--line-strong),
+      0 1px 2px rgb(var(--shadow-color) / 0.05);
+  }
 
-.btn-ghost:hover {
-  border-color: #cfcfc8;
-  background: var(--mist);
-}
+  .btn-secondary:hover,
+  .btn-ghost:hover {
+    background: var(--tint);
+    box-shadow:
+      inset 0 0 0 1px #a9c2e8,
+      0 1px 2px rgb(var(--shadow-color) / 0.05);
+  }
 
-/* ── Product motion ── */
-@keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 0.55; }
-  70% { transform: scale(1.28); opacity: 0; }
-  100% { transform: scale(1.28); opacity: 0; }
-}
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-ghost:active {
+    transform: scale(0.98);
+  }
 
-@keyframes live-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
+  .btn-sm {
+    height: 2.5rem;
+    padding-inline: 1.125rem;
+    font-size: 0.875rem;
+  }
 
-@keyframes waveform {
-  0%, 100% { transform: scaleY(0.3); }
-  50% { transform: scaleY(1); }
-}
+  /* On the blue CTA band */
+  .btn-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    height: 3rem;
+    padding-inline: 1.5rem;
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--deep);
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgb(6 18 48 / 0.2), 0 10px 24px -10px rgb(6 18 48 / 0.45);
+    transition: background-color 0.2s var(--ease-out-soft), transform 0.15s var(--ease-out-soft);
+  }
 
-@keyframes ring-out {
-  0% { transform: scale(0.55); opacity: 0; }
-  15% { opacity: 1; }
-  100% { transform: scale(1); opacity: 0; }
-}
+  .btn-light:hover {
+    background: #eef5ff;
+  }
 
-@keyframes float-soft {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
+  .btn-light:active {
+    transform: scale(0.98);
+  }
 
-.animate-pulse-ring { animation: pulse-ring 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-.animate-live-pulse { animation: live-pulse 1.8s ease-in-out infinite; }
-.animate-float-soft { animation: float-soft 7s ease-in-out infinite; }
-.animate-wave-bar {
-  transform-origin: center;
-  animation: waveform 1.15s ease-in-out infinite;
-}
-.animate-ring-out {
-  transform-origin: center;
-  animation: ring-out 4.8s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
-}
+  .btn-light .btn-chip {
+    background: var(--brand-tint);
+    color: var(--primary);
+  }
 
-/* ── Scroll reveal ──
-   Content is only hidden when JS can reveal it again and motion is welcome,
-   so no-JS visitors and reduced-motion users always see the full page. */
-[data-reveal] {
-  transition:
-    opacity 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98),
-    transform 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98);
-  transition-delay: var(--reveal-delay, 0s);
-}
-
-@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-  [data-reveal]:not([data-shown]) {
-    opacity: 0;
-    transform: translateY(18px);
+  /* Sits 10px from the button's top, bottom and end: a 28px circle in a
+     48px pill, so the curves stay concentric. */
+  .btn-chip {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-left: 0.125rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.18);
   }
 }
 
+/* Outside the layer on purpose: it has to beat the bars' own utility fill. */
+.btn-light .btn-chip .rd-meter {
+  background: var(--primary);
+}
+
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .animate-pulse-ring,
-  .animate-live-pulse,
-  .animate-float-soft,
-  .animate-wave-bar,
-  .animate-ring-out {
-    animation: none;
-  }
-  .animate-ring-out {
-    opacity: 0;
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost,
+  .btn-light {
+    transition: none;
   }
 }
 
 /* ── Legal document prose ── */
 .legal-prose a {
-  color: var(--brand);
+  color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
 
 .legal-prose a:hover {
-  color: var(--brand-hover);
+  color: var(--primary-hover);
 }
 
 .legal-prose ul {

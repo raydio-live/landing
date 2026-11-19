@@ -20,9 +20,9 @@ export function RaydioLogo({ className = "h-8 w-auto" }: LogoProps) {
 
 export function RaydioWordmark({ className = "" }: LogoProps) {
   return (
-    <span className={`flex items-center gap-2 ${className}`.trim()}>
-      <RaydioLogo />
-      <span className="text-[15px] font-semibold tracking-tight text-foreground">
+    <span className={`flex items-center gap-2.5 ${className}`.trim()}>
+      <RaydioLogo className="h-7 w-auto" />
+      <span className="text-[1.0625rem] font-semibold tracking-[-0.02em] text-ink">
         Raydio
       </span>
     </span>
