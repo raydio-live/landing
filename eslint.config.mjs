@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored Stageshow kit (copied verbatim from the skill; it targets
+    // React 18 and predates the React Compiler lint rules).
+    "stageshow/**",
   ]),
 ]);
 

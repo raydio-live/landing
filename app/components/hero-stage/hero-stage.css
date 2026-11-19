@@ -1,0 +1,432 @@
+/* Hero stage: Raydio's talk screen. Every rule is scoped to .rd.
+   Sizes inside the phone are the app's own, in Android points. */
+
+.rd {
+  & .ss-stage {
+    --ss-accent: #0862e0;
+    --ss-font: var(--font-inter), system-ui, sans-serif;
+    /* The app's Daylight palette, every hue moved onto the brand blue */
+    --rd-fg: #0b1a33;
+    --rd-muted: #3d4a63;
+    --rd-border: #d5ddea;
+    --rd-surface: #f2f5fa;
+    --rd-azure: #1383f9;
+    --rd-accent: #0862e0;
+    --rd-accent-text: #0753c4;
+    --rd-navy: #0a1f4d;
+    --rd-sky: #8cc4ff;
+    --rd-pale: #dbe8fd;
+    --rd-swap: 0.16s ease;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  /* Pinned from the top, centered, running off the bottom of the hero */
+  .rd-phone {
+    position: absolute;
+  }
+
+  /* ---- The signal: three rings from the disc, behind the phone ---- */
+
+  .rd-rings {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .rd-rings[data-on] {
+    opacity: 1;
+    transition-duration: 0.25s;
+  }
+
+  .rd-rings > span {
+    position: absolute;
+    left: -280px;
+    top: -280px;
+    width: 560px;
+    height: 560px;
+    border-radius: 50%;
+    border: 2px solid rgba(19, 131, 249, 0.42);
+    opacity: 0;
+    animation: rd-ring 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+    animation-play-state: paused;
+  }
+
+  .rd-rings[data-on] > span {
+    animation-play-state: running;
+  }
+
+  .rd-rings > span:nth-child(2) {
+    animation-delay: 0.8s;
+  }
+
+  .rd-rings > span:nth-child(3) {
+    animation-delay: 1.6s;
+  }
+
+  /* ---- The app ---- */
+
+  .rd-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: var(--rd-fg);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  /* ScreenHeader: back, title and status line, a hairline under it */
+  .rd-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px 12px;
+    border-bottom: 1px solid var(--rd-border);
+  }
+
+  .rd-back {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--rd-surface);
+    color: var(--rd-fg);
+  }
+
+  .rd-head__text {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .rd-title {
+    font-family: var(--font-space), var(--font-inter), system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .rd-radio {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--rd-accent-text);
+  }
+
+  .rd-radio__dot,
+  .rd-count__dot {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rd-azure);
+  }
+
+  .rd-count__dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* ListenersPanel, collapsed */
+  .rd-listeners {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 16px 0;
+    padding: 14px;
+    border: 1.5px solid var(--rd-border);
+    border-radius: 16px;
+    background: #fff;
+  }
+
+  .rd-stack {
+    display: flex;
+    flex: none;
+  }
+
+  .rd-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 0 0 2px #fff;
+  }
+
+  .rd-avatar + .rd-avatar {
+    margin-left: -6px;
+  }
+
+  .rd-avatar[data-tone="me"] { background: var(--rd-accent); color: #fff; }
+  .rd-avatar[data-tone="a"] { background: #0b3a8f; color: #fff; }
+  .rd-avatar[data-tone="b"] { background: var(--rd-sky); color: var(--rd-navy); }
+  .rd-avatar[data-tone="more"] { background: var(--rd-pale); color: var(--rd-navy); }
+
+  .rd-stack .rd-avatar:nth-child(1) { z-index: 4; }
+  .rd-stack .rd-avatar:nth-child(2) { z-index: 3; }
+  .rd-stack .rd-avatar:nth-child(3) { z-index: 2; }
+  .rd-stack .rd-avatar:nth-child(4) { z-index: 1; }
+  .rd-avatar { position: relative; }
+
+  .rd-listeners__text {
+    display: grid;
+    flex: 1;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .rd-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+  }
+
+  .rd-preview {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--rd-muted);
+  }
+
+  .rd-see {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: none;
+    height: 36px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--rd-accent-text);
+  }
+
+  /* TalkControls: the status banner */
+  .rd-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 16px 0;
+    padding: 14px 16px;
+    border: 1.5px solid var(--rd-azure);
+    border-radius: 16px;
+    background: #eef5ff;
+    color: var(--rd-fg);
+    transition: background-color var(--rd-swap), border-color var(--rd-swap), color var(--rd-swap);
+  }
+
+  .rd-banner[data-mode="onAir"] {
+    border-color: var(--rd-navy);
+    background: var(--rd-navy);
+    color: #fff;
+  }
+
+  .rd-banner[data-mode="busy"] {
+    border-color: var(--rd-pale);
+    background: var(--rd-pale);
+    color: var(--rd-navy);
+  }
+
+  .rd-banner__icon {
+    display: grid;
+    flex: none;
+    width: 28px;
+    height: 28px;
+    color: var(--rd-azure);
+    transition: color var(--rd-swap);
+  }
+
+  .rd-banner[data-mode="onAir"] .rd-banner__icon { color: #fff; }
+  .rd-banner[data-mode="busy"] .rd-banner__icon { color: var(--rd-navy); }
+
+  .rd-banner__text {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .rd-banner__title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .rd-banner__detail {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--rd-muted);
+    transition: color var(--rd-swap);
+  }
+
+  .rd-banner[data-mode="onAir"] .rd-banner__detail { color: var(--rd-sky); }
+  .rd-banner[data-mode="busy"] .rd-banner__detail { color: var(--rd-navy); }
+
+  /* The countdown: the app's mono timer, only while on air */
+  .rd-secs {
+    display: flex;
+    align-items: baseline;
+    flex: none;
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #fff;
+    opacity: 0;
+    transform: translateX(6px);
+    will-change: transform;
+    transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.3, 0.75, 0.1, 1);
+  }
+
+  .rd-secs[data-show] {
+    opacity: 1;
+    transform: none;
+  }
+
+
+  /* The floor: the disc centered in what is left of the screen */
+  /* The floor: the disc under the banner. The real app centers it in the
+     rest of a tall screen; the crop keeps it close to the story instead */
+  .rd-floor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 36px;
+  }
+
+  .rd-halo {
+    display: grid;
+    place-items: center;
+    width: 264px;
+    height: 264px;
+    border-radius: 50%;
+    background: rgba(8, 98, 224, 0.12);
+    transition: background-color var(--rd-swap), box-shadow 0.4s ease;
+  }
+
+  .rd-halo[data-mode="onAir"] {
+    background: rgba(19, 131, 249, 0.2);
+    box-shadow: 0 0 0 10px rgba(19, 131, 249, 0.07);
+  }
+
+  .rd-halo[data-mode="busy"] {
+    background: rgba(219, 232, 253, 0.7);
+  }
+
+  .rd-disc {
+    display: grid;
+    place-items: center;
+    width: 232px;
+    height: 232px;
+    border-radius: 50%;
+    background: var(--rd-accent);
+    box-shadow: inset 0 0 0 1.5px transparent;
+    color: #fff;
+    will-change: transform;
+    transition: background-color var(--rd-swap), color var(--rd-swap), box-shadow var(--rd-swap),
+      transform 0.25s cubic-bezier(0.3, 0.75, 0.1, 1);
+  }
+
+  .rd-disc[data-held] {
+    transform: scale(0.97);
+    transition-duration: 0.2s, 0.2s, 0.2s, 0.12s;
+  }
+
+  .rd-disc[data-mode="onAir"] {
+    background: var(--rd-navy);
+  }
+
+  .rd-disc[data-mode="busy"] {
+    background: var(--rd-pale);
+    box-shadow: inset 0 0 0 1.5px #b9d6fe;
+    color: var(--rd-navy);
+  }
+
+  .rd-disc__face {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    width: 168px;
+  }
+
+  .rd-disc__label {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 26px;
+  }
+
+  .rd-hint {
+    display: grid;
+    margin-top: 12px;
+  }
+
+  /* The disc's face hands off in sequence: the old icon and label are gone
+     before the new ones arrive, so two never read at once */
+  .rd-disc .ss-states__item {
+    transition: opacity 0.1s ease, filter 0.1s ease, transform 0s 0.1s;
+  }
+
+  .rd-disc .ss-states__item[data-on] {
+    transition: opacity 0.2s ease-out 0.05s, filter 0.2s ease-out 0.05s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
+  }
+
+  /* A finger over a blue or navy disc: a light print, not a dark smudge */
+  .ss-cursor[data-style="touch"] .ss-cursor__dot {
+    background: rgba(255, 255, 255, 0.24);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.6), 0 2px 8px rgba(10, 31, 77, 0.25);
+  }
+
+  .ss-cursor[data-style="touch"][data-pressed="true"] .ss-cursor__dot,
+  .ss-cursor[data-style="touch"][data-swiping] .ss-cursor__dot {
+    background: rgba(255, 255, 255, 0.32);
+  }
+
+  .rd-hint__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--rd-muted);
+  }
+
+  .rd-hint__text--heard {
+    font-weight: 700;
+    color: var(--rd-accent-text);
+  }
+}
+
+/* The ring is still bright as it clears the phone's edge (scale ~0.75) and
+   fades only on its way out of the hero */
+@keyframes rd-ring {
+  0% {
+    transform: scale(0.45);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

@@ -31,10 +31,11 @@ soft shadow), identical card grids repeated down the page.
 
 - Instant over complete: one action per screen, no setup theater.
 - Show the channel, not the chrome: product surface first, decoration last.
-- Quiet confidence: restraint, generous whitespace, a restrained palette:
-  warm paper neutrals, slate ink (from the logo mark) for text and primary
-  buttons, denim blue for identity, and a coral "on air" signal reserved for
-  live and talking states.
+- Quiet confidence: restraint, generous whitespace, and one hue. Every colour
+  is a step of the logo's azure (#1383F9): blue-black ink for text, a vibrant
+  #0862E0 for buttons and links, navy for "on air", pale blue tints for
+  grounds. No second hue, not even for status: states differ by lightness,
+  icon and words (tokens in app/globals.css).
 - Thumb-first: big targets, hold-to-talk ergonomics, legible at a glance.
 - Private by default: member-only channels, no public-feed energy.
 

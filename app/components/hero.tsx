@@ -1,90 +1,69 @@
 import { PLAY_STORE_URL } from "../lib/store";
-import { FadeIn } from "./ui/fade-in";
-import { HeroDemo } from "./hero-demo";
-import { PlayIcon } from "./ui/play-icon";
+import { ButtonLink, MicChip } from "./ui/button";
+import { Highlight } from "./ui/highlight";
+import { Ion } from "./ui/ionicons";
+import { HeroStage } from "./hero-stage/hero-stage";
 
-const audiences = [
-  "Field ops",
-  "Event crews",
-  "Warehouses",
-  "Venues",
-  "Delivery fleets",
-  "Coaching staff",
-  "Road trips",
-  "Production sets",
-];
+const proof = ["Free to start", "Live in under a minute", "Private channels"];
 
+/**
+ * Copy on the left, the real talk screen on the right. The phone is pinned
+ * from the top and runs off the hero's bottom edge, so the section line is
+ * the crop. Nothing here waits on a reveal: it paints with the HTML.
+ */
 export function Hero() {
   return (
-    <section id="top" className="relative isolate overflow-hidden">
-      {/* Ambient layers: a soft blue bloom and a dotted grid that fades out. */}
+    <section id="top" className="relative isolate overflow-hidden border-b border-line">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-[-18rem] h-[44rem] w-[64rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(30,79,163,0.11),transparent)] lg:left-[72%]" />
-        <div className="absolute right-[-12rem] top-[22rem] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(closest-side,rgba(228,87,46,0.07),transparent)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(21,27,38,0.08)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_70%_60%_at_60%_35%,black,transparent)]" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#eaf2ff] via-[#f3f7ff] to-[#f8fbff]" />
+        <div className="absolute left-1/2 top-[-12rem] h-[44rem] w-[44rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(19,131,249,0.22),transparent)] xl:left-[74%]" />
+        <div className="absolute bottom-[-16rem] left-[-10rem] h-[32rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(8,98,224,0.08),transparent)]" />
       </div>
 
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 pb-20 pt-32 sm:pt-36 lg:grid-cols-[1.08fr_1fr] lg:gap-10 lg:pb-28 lg:pt-40">
-        <div className="text-center lg:text-left">
-          <FadeIn>
-            <p className="inline-flex items-center gap-2.5 rounded-full bg-white py-1.5 pl-3 pr-4 ring-1 ring-line">
-              <span className="h-2 w-2 rounded-full bg-signal animate-live-pulse" aria-hidden="true" />
-              <span className="text-[13px] font-medium text-muted">
-                Live push-to-talk for teams
-              </span>
-            </p>
-          </FadeIn>
+      <div className="container-page grid grid-cols-1 items-center gap-y-14 pt-32 md:pt-36 xl:grid-cols-[minmax(0,1fr)_35rem] xl:gap-x-16 xl:pt-[7.5rem]">
+        <div className="mx-auto max-w-[34rem] text-center xl:mx-0 xl:pb-16 xl:text-left">
+          <p className="inline-flex h-8 items-center gap-2 rounded-full bg-white/80 pl-1.5 pr-3.5 text-caption font-medium text-muted shadow-card ring-1 ring-line">
+            <span className="flex h-5 items-center rounded-full bg-primary px-2 text-[0.6875rem] font-semibold tracking-[0.01em] text-white">
+              New
+            </span>
+            Now on Android · iOS coming soon
+          </p>
 
-          <FadeIn delay={0.06}>
-            <h1 className="mt-7 text-balance text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-[4rem] lg:text-[3.6rem] xl:text-[4rem]">
-              <span className="block">Your team&rsquo;s radio.</span>
-              <span className="block text-faint">In your pocket.</span>
-            </h1>
-          </FadeIn>
+          <h1 className="mt-7 text-balance text-display-sm font-semibold text-heading sm:text-[3.5rem] sm:leading-[1.05] xl:text-display">
+            Your team&rsquo;s radio.
+            <br />
+            <Highlight>In your pocket.</Highlight>
+          </h1>
 
-          <FadeIn delay={0.12}>
-            <p className="mx-auto mt-6 max-w-lg text-pretty text-[1.125rem] leading-relaxed text-muted lg:mx-0">
-              Raydio is a realtime walkie-talkie app. Open a channel, hold the
-              button, and speak. No call setup. No video overhead.
-            </p>
-          </FadeIn>
+          <p className="mx-auto mt-6 max-w-[30rem] text-pretty text-lead text-muted xl:mx-0">
+            Raydio is a realtime walkie-talkie app. Open a channel, hold the
+            button and speak. No call setup, no video overhead.
+          </p>
 
-          <FadeIn delay={0.18}>
-            <div className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
-              <a
-                href={PLAY_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                <PlayIcon />
-                Get the app &mdash; it&rsquo;s free
-              </a>
-              <a href="#how-it-works" className="btn-ghost">
-                See how it works
-              </a>
-            </div>
-            <p className="mt-5 text-sm text-faint">
-              Free to start · First channel in under a minute
-            </p>
-          </FadeIn>
-        </div>
+          <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center xl:justify-start">
+            <ButtonLink href={PLAY_STORE_URL} external chip={<MicChip />}>
+              Get the app
+            </ButtonLink>
+            <ButtonLink href="#how-it-works" variant="secondary">
+              See how it works
+            </ButtonLink>
+          </div>
 
-        <FadeIn delay={0.1}>
-          <HeroDemo />
-        </FadeIn>
-      </div>
-
-      <div className="border-y border-line bg-white/50">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-7 sm:flex-row sm:gap-8">
-          <p className="shrink-0 text-sm font-medium text-foreground">Built for</p>
-          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 sm:justify-start">
-            {audiences.map((a) => (
-              <li key={a} className="text-sm text-faint">
-                {a}
+          <ul className="mx-auto mt-10 flex w-fit flex-col items-start gap-x-6 gap-y-3 text-small text-muted sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center xl:mx-0 xl:justify-start">
+            {proof.map((item) => (
+              <li key={item} className="flex items-center gap-2">
+                <Ion name="checkmark-circle" size={18} className="text-azure" />
+                {item}
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Below 520px the stage runs to the screen edges (its compact design
+            is drawn at 360 and grows to the phone's width), so the phone's
+            shadow is never boxed in by a gutter. */}
+        <div data-ss-fill="" className="-mx-6 self-end min-[520px]:mx-auto min-[520px]:w-full min-[520px]:max-w-[35rem]">
+          <HeroStage />
         </div>
       </div>
     </section>

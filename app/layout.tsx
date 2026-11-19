@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Space_Grotesk } from "next/font/google";
+import { MotionProvider } from "./components/ui/motion-provider";
 import "./globals.css";
 
 const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
+  display: "swap",
+});
+
+/* Inter and Space Grotesk are the Android app's own faces; the page uses them
+   only inside the phone so the demo reads as the real app. */
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
+  subsets: ["latin"],
+  weight: ["700"],
   display: "swap",
 });
 
@@ -42,11 +58,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geist.variable} ${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased`}
       style={{ colorScheme: "light" }}
     >
-      <body className="min-h-full flex flex-col overflow-x-hidden bg-mist text-foreground">
-        {children}
+      <body className="min-h-full flex flex-col overflow-x-hidden bg-background text-foreground">
+        {/* Reveals start hidden in the server HTML; without JS nothing would
+            ever show them, so undo the hidden state. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}`}</style>
+        </noscript>
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );
